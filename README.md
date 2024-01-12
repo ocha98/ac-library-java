@@ -7,7 +7,7 @@ Fork from https://github.com/NASU41/AtCoderLibraryForJava
 jarファイルと一緒に以下のようにコンパイルしてください。
 
 ```
-javac -cp .:./acl.jar Main.java
+javac -cp src/bin/acl.jar Main.java
 ```
 
 ## コントリビュートについて
