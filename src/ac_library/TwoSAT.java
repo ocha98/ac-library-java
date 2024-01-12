@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 /**
  * @verified https://atcoder.jp/contests/practice2/submissions/16647102
  */

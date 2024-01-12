@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 public class ContestScanner {
     private final java.io.InputStream in;
     private final byte[] buffer = new byte[1024];

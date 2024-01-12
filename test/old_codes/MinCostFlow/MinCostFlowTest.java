@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import acl.MinCostFlow;
+import ac_library.MinCostFlow;
 
 public class MinCostFlowTest {
     @Test

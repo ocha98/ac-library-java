@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 public class DSU {
 	private int n;
 	private int[] parentOrSize;
