@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import acl.MaxFlow;
+import ac_library.MaxFlow;
 
 /**
  * From: https://github.com/atcoder/ac-library/blob/1ca9100261b8c27cf62acccc3618c5e8375bf57b/test/unittest/maxflow_test.cpp

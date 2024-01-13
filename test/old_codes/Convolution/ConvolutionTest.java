@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import acl.Convolution;
-import acl.ModIntFactory;
+import ac_library.Convolution;
+import ac_library.ModIntFactory;
 
 /**
  * Convolution example and test.

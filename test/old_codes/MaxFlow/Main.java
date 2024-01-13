@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-import acl.MaxFlow;
+import ac_library.MaxFlow;
 
 public class Main {
     static Solver practice2_d = new practice2_d();

@@ -1,5 +1,5 @@
+import ac_library.GraphBuilder;
 import acl.ArticulationPoints;
-import acl.GraphBuilder;
 
 class ArticulationPointsUsage{
 	//Usage example ArticulationPoint.articulationPoints()

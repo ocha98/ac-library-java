@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 public class MathLib{
     private static long safe_mod(long x, long m){
         x %= m;

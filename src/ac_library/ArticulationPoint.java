@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 public class ArticulationPoint{
 	private static int time;
 	private static int[] disc, low;

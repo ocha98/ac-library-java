@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd src/acl
+set -e
+
+cd src/ac_library
 javac -d ../bin *.java
 cd ../bin
-jar cvf acl.jar *
+jar cf ac_library.jar *

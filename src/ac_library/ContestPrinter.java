@@ -1,4 +1,4 @@
-package acl;
+package ac_library;
 public class ContestPrinter extends java.io.PrintWriter{
     public ContestPrinter(java.io.PrintStream stream){
         super(stream);
