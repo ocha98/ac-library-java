@@ -2,12 +2,18 @@ Fork from https://github.com/NASU41/AtCoderLibraryForJava
 
 ## 使い方
 
-`builder.sh`で`acl.jar`を生成してください。
+`builder.sh`で`ac_library.jar`を生成してください。
 
 jarファイルと一緒に以下のようにコンパイルしてください。
 
 ```
-javac -cp .:./acl.jar Main.java
+javac -cp src/bin/ac_library.jar Main.java
+```
+
+実行時は以下のように実行してください。
+
+```
+java -cp $PWD/src/bin/ac_library.jar: Main
 ```
 
 ## コントリビュートについて
