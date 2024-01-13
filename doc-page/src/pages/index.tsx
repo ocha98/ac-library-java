@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next";
-import { Inter } from 'next/font/google'
 import fs from 'fs'
 import { Container } from "react-bootstrap";
 import Head from "next/head";
@@ -11,7 +10,7 @@ export default function Home({ slugs }: { slugs: string[] }) {
       <Head>
         <title>ac library java</title>
       </Head>
-      <h1>ac library java document</h1>
+      <h1>AC Library Java Document</h1>
       {
         slugs.map((slug) => {
           return (
