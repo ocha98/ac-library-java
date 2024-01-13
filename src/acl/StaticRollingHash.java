@@ -1,5 +1,9 @@
 package acl;
 
+/**
+ * @verified
+ * https://atcoder.jp/contests/tessoku-book/submissions/49246027
+ */
 public class StaticRollingHash implements Comparable<StaticRollingHash>{
 	private static final long BASE =
 		new java.util.Random().nextInt(1,1001)+Character.MAX_VALUE;
