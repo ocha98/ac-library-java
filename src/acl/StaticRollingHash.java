@@ -1,9 +1,3 @@
-package acl;
-
-/**
- * @verified
- * https://atcoder.jp/contests/tessoku-book/submissions/49246027
- */
 public class StaticRollingHash implements Comparable<StaticRollingHash>{
 	private static final long BASE =
 		new java.util.Random().nextInt(1,1001)+Character.MAX_VALUE;
@@ -26,6 +20,16 @@ public class StaticRollingHash implements Comparable<StaticRollingHash>{
 	}
 
 	/**
+	 * 引数のStaticRollingHashを複製します。
+	 *
+	 * @param th 複製元
+	 */
+	public StaticRollingHash(final StaticRollingHash rh){
+		string = rh.toString();
+		hash = rh.getHashTable();
+	}
+
+	/**
 	 * フィールドのstringを元にハッシュ値を計算します。
 	 */
 	private void roll(){
@@ -36,6 +40,13 @@ public class StaticRollingHash implements Comparable<StaticRollingHash>{
 				hash[i] -= MOD;
 			}
 		}
+	}
+
+	/**
+	 * ハッシュテーブルを返します。
+	 */
+	private long[] getHashTable(){
+		return hash;
 	}
 
 	/**
@@ -122,6 +133,29 @@ public class StaticRollingHash implements Comparable<StaticRollingHash>{
 			return false;
 		}
 		return getHash(l1,r1)==rh.getHash(l2,r2);
+	}
+
+	/**
+	 * 指定された区間と引数の指定された区間が等しいか返します。
+	 *
+	 * @param str 比較対象のStaticRollingHash
+	 * @param l1 このStaticRollingHashの左端
+	 * @param r1 このStaticRollingHashの右端
+	 * @param l2 比較対象の左端
+	 * @param r2 比較対象の右端
+	 *
+	 * @return 等しい可能性があるならtrue、確実に異なるならfalse
+	 */
+	public boolean equals(final String str,final int l1,final int r1,final int l2,final int r2){
+		if(r1-l1!=r2-l2){
+			return false;
+		}
+		for(int i=0;i<r1-l1;i++){
+			if(string.charAt(i+l1)!=str.charAt(i+l2)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -319,6 +353,38 @@ public class StaticRollingHash implements Comparable<StaticRollingHash>{
 	}
 
 	/**
+	 * 引数の文字列が先頭から何番目に存在するか返します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param rh 探索する文字列
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int indexOf(final StaticRollingHash rh){
+		return indexOf(rh,0);
+	}
+
+	/**
+	 * 引数の文字列を指定されたインデックス以降で探索します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param str 探索する文字列
+	 * @param fromIndex 探索開始位置
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int indexOf(final StaticRollingHash rh,final int fromIndex){
+		final long hash = rh.getHash(0,rh.length());
+		final int len = length()-rh.length();
+		for(int i = fromIndex;i<=len;++i){
+			if(hash==getHash(i,rh.length()+i)){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
 	 * このStaticRollingHashが表す文字列が空文字列か判定します。
 	 *
 	 * @return ""と等しいならtrue、それ以外はfalse
@@ -355,6 +421,74 @@ public class StaticRollingHash implements Comparable<StaticRollingHash>{
 	 */
 	public int lastIndexOf(final int ch){
 		return lastIndexOf(ch,length()-1);
+	}
+
+	/**
+	 * 引数の文字が先頭から何番目に存在するか返します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param str 探索する文字列
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int lastIndexOf(final String str){
+		return indexOf(str,0);
+	}
+
+	/**
+	 * 引数の文字列を指定されたインデックス以降で探索します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param str 探索する文字列
+	 * @param fromIndex 探索開始位置
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int lastIndexOf(final String str,final int fromIndex){
+		long hash = 0;
+		for(final char c: str.toCharArray()){
+			hash = multiply(hash,BASE)+c-' '+1;
+			if(MOD<=hash){
+				hash -= MOD;
+			}
+		}
+		for(int i = Math.min(fromIndex,length()-str.length());i>=0;--i){
+			if(hash==getHash(i,str.length()+i)){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * 引数の文字が先頭から何番目に存在するか返します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param rh 探索する文字列
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int lastIndexOf(final StaticRollingHash rh){
+		return indexOf(rh,0);
+	}
+
+	/**
+	 * 引数の文字列を指定されたインデックス以降で探索します。
+	 * 存在しない場合は-1を返します。
+	 *
+	 * @param str 探索する文字列
+	 * @param fromIndex 探索開始位置
+	 *
+	 * @return 最も左側にある引数の文字列のインデックス(無ければ - 1)
+	 */
+	public int lastIndexOf(final StaticRollingHash rh,final int fromIndex){
+		final long hash = rh.getHash(0,rh.length());
+		for(int i = Math.min(fromIndex,length()-rh.length());i>=0;--i){
+			if(hash==getHash(i,rh.length()+i)){
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
