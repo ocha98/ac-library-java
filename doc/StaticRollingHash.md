@@ -10,6 +10,7 @@ $\mod 2^{61}-1$ で計算しております。詳しくは以下のリンクを�
 ### StaticRollingHash
 ```java
 public StaticRollingHash(String str)
+public StaticRollingHash(StaticRollingHash rh)
 ```
 
 * 指定された文字列を元にハッシュ値を計算します。
@@ -32,6 +33,7 @@ public long getHash(int l, int r)
 ### equals
 ```java
 public boolean equals(StaticRollingHash rh, int l1, int r1, int l2, int r2)
+public boolean equals(String str, int l1, int r1, int l2, int r2)
 ```
 自身の連続部分文字列 $[l_1,r_1)$ と rh の連続部分文字列 $[l_2,r_2)$ のハッシュ値が等しいか返します。
 
@@ -40,7 +42,8 @@ public boolean equals(StaticRollingHash rh, int l1, int r1, int l2, int r2)
 * $0 \leq l_2 \leq r_2 \leq \mathrm{rh.length}()$
 
 **計算量**
-* $O(1)$
+* $O(1)$ (StaticRollingHash)
+* $O(r_1-l_1)$ (String)
 
 ### length
 ```java
@@ -86,8 +89,8 @@ public int compareTo(String str)
 String の compareTo メソッドに従って文字列を比較します。
 
 **計算量**
-* $O(\min(\mathrm{length}(),\mathrm{rh.length}()))$
-* $O(\min(\mathrm{length}(),\mathrm{str.length}()))$
+* $O(\min(\mathrm{length}(),\mathrm{rh.length}()))$ (StaticRollingHash)
+* $O(\min(\mathrm{length}(),\mathrm{str.length}()))$ (String)
 
 ### charAt
 ```java
@@ -106,8 +109,8 @@ public int compareToIgnoreCase(String str)
 String の compareToIgnoreCase メソッドに従って文字列を比較します。
 
 **計算量**
-* $O(\min(\mathrm{length}(),\mathrm{rh.length}()))$
-* $O(\min(\mathrm{length}(),\mathrm{str.length}()))$
+* $O(\min(\mathrm{length}(),\mathrm{rh.length}()))$ (StaticRollingHash)
+* $O(\min(\mathrm{length}(),\mathrm{str.length}()))$ (String)
 
 ### contains
 ```java
@@ -118,7 +121,7 @@ StaticRollingHash は ハッシュ値を、String は String の contains メソ
 
 **計算量**
 * $O(\max(0,\mathrm{length}()-\mathrm{rh.length}()))$ (StaticRollingHash)
-* $O(\mathrm{length}() \times \max(0,\mathrm{length}()-\mathrm{str.length}()))$ (String)
+* $O(\max(0,\mathrm{length}()-\mathrm{str.length}()))$ (String)
 
 ### indexOf
 ```java
@@ -131,7 +134,7 @@ char は線形探索、String は一度ハッシュ値を計算してから線�
 
 **計算量**
 * $O(\max(0,\mathrm{length}()-\mathrm{fromIndex}))$ (char)
-* $O(\max(0,\mathrm{length}()-\mathrm{rh.length}()-\mathrm{fromIndex}))$
+* $O(\max(0,\mathrm{length}()-\mathrm{rh.length}()-\mathrm{fromIndex}))$ (String)
 
 ### isEmpty
 ```java
@@ -144,7 +147,7 @@ public boolean isEmpty()
 
 **計算量**
 * $O(\max(0,\mathrm{length}()-\mathrm{fromIndex}))$ (char)
-* $O(\max(0,\mathrm{length}()-\mathrm{rh.length}()-\mathrm{fromIndex}))$
+* $O(\max(0,\mathrm{length}()-\mathrm{rh.length}()-\mathrm{fromIndex}))$ (String)
 
 ### lastIndexOf
 ```java
