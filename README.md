@@ -1,5 +1,7 @@
 Fork from https://github.com/NASU41/AtCoderLibraryForJava
 
+Document: https://ocha98.github.io/ac-library-java/
+
 ## 使い方
 
 `builder.sh`で`ac_library.jar`を生成してください。
