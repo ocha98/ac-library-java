@@ -1,5 +1,4 @@
 package ac_library;
-import java.util.Arrays;
 
 public class StringAlgorithm {
 	private static int[] saNaive(int[] s) {
@@ -232,7 +231,7 @@ public class StringAlgorithm {
 	public static int[] suffixArray(int[] s)
 	{
 		int n = s.length;
-		int[] vals = Arrays.copyOf(s, n);
+		int[] vals = java.util.Arrays.copyOf(s, n);
 		java.util.Arrays.sort(vals);
 		int p = 1;
 		for(int i = 1;i < n;i++){
@@ -256,7 +255,7 @@ public class StringAlgorithm {
 		return sais(s2, 255);
 	}
 
-	public static int[] suffixArray(java.lang.String s) {
+	public static int[] suffixArray(String s) {
 		return suffixArray(s.toCharArray());
 	}
 
@@ -292,7 +291,7 @@ public class StringAlgorithm {
 		return lcpArray(s2, sa);
 	}
 
-	public static int[] lcpArray(java.lang.String s, int[] sa) {
+	public static int[] lcpArray(String s, int[] sa) {
 		return lcpArray(s.toCharArray(), sa);
 	}
 

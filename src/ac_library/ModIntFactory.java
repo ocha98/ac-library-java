@@ -1,7 +1,4 @@
 package ac_library;
-import java.util.*;
-
-import java.util.ArrayList;
 
 /**
  * @verified
@@ -21,7 +18,7 @@ public class ModIntFactory {
     private final boolean usesMontgomery;
     private final ModArithmetic.ModArithmeticMontgomery maMontgomery;
 
-    private ArrayList<Integer> factorial;
+    private java.util.ArrayList<Integer> factorial;
 
     public ModIntFactory(int mod) {
         this.ma = ModArithmetic.of(mod);
@@ -29,7 +26,7 @@ public class ModIntFactory {
         this.maMontgomery = usesMontgomery ? (ModArithmetic.ModArithmeticMontgomery) ma : null;
         this.mod = mod;
 
-        this.factorial = new ArrayList<>();
+        this.factorial = new java.util.ArrayList<>();
     }
 
     public ModInt create(long value) {
