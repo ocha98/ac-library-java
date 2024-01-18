@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import ac_library.Convolution;
 import ac_library.ModIntFactory;
 
@@ -10,7 +13,8 @@ import ac_library.ModIntFactory;
  * Convolution example and test.
  */
 public class ConvolutionTest {
-    public static void main(String[] args) {
+    @Test
+    public void Test() {
         Random gen = new Random();
         int[] primes = {
                 1053818881,
@@ -44,17 +48,7 @@ public class ConvolutionTest {
             List<ModIntFactory.ModInt> vb = Arrays.stream(b).mapToObj(factory::create).collect(Collectors.toList());
             long[] expected = Convolution.convolutionNaive(a, b, mod);
             long[] actual = Convolution.convolution(va, vb).stream().mapToLong(ModIntFactory.ModInt::value).toArray();
-            assertArrayEquals(expected, actual);
-        }
-    }
-
-    private static void assertArrayEquals(long[] expected, long[] actual) {
-        if (expected.length != actual.length) throw new RuntimeException();
-        int n = expected.length;
-        for (int i = 0; i < n; i++) {
-            if (expected[i] != actual[i]) {
-                throw new RuntimeException();
-            }
+            Assert.assertArrayEquals(expected, actual);
         }
     }
 }

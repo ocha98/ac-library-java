@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ac_library</groupId>
-  <artifactId>demo</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>ac-library-java</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 
-  <name>demo</name>
+  <name>ac-library-java</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -28,8 +28,8 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>${project.basedir}/src/ac_library</sourceDirectory>
-    <testSourceDirectory>${project.basedir}/src/test</testSourceDirectory>
+    <sourceDirectory>${basedir}/src</sourceDirectory>
+    <testSourceDirectory>${basedir}/test</testSourceDirectory>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->

@@ -15,7 +15,7 @@ public class MinCostFlow {
     public static final class WeightedCapEdge {
         public final int from, to;
         public final long cap, flow, cost;
-        WeightedCapEdge(int from, int to, long cap, long flow, long cost) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; this.cost = cost; }
+        public WeightedCapEdge(int from, int to, long cap, long flow, long cost) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; this.cost = cost; }
         @Override
         public boolean equals(Object o) {
             if (o instanceof WeightedCapEdge) {
@@ -33,7 +33,7 @@ public class MinCostFlow {
 
     public static final class FlowAndCost {
         public final long flow, cost;
-        FlowAndCost(long flow, long cost) { this.flow = flow; this.cost = cost; }
+        public FlowAndCost(long flow, long cost) { this.flow = flow; this.cost = cost; }
         @Override
         public boolean equals(Object o) {
             if (o instanceof FlowAndCost) {
@@ -103,7 +103,7 @@ public class MinCostFlow {
     public FlowAndCost minCostFlow(int s, int t, long flowLimit) {
         return minCostSlope(s, t, flowLimit).getLast();
     }
-    java.util.LinkedList<FlowAndCost> minCostSlope(int s, int t) {
+    public java.util.LinkedList<FlowAndCost> minCostSlope(int s, int t) {
         return minCostSlope(s, t, INF);
     }
 
