@@ -9,7 +9,7 @@ public class MaxFlow {
     public static final class CapEdge {
         public final int from, to;
         public final long cap, flow;
-        CapEdge(int from, int to, long cap, long flow) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; }
+        public CapEdge(int from, int to, long cap, long flow) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; }
         @Override
         public boolean equals(Object o) {
             if (o instanceof CapEdge) {
@@ -24,7 +24,7 @@ public class MaxFlow {
         IntPair(int first, int second) { this.first = first; this.second = second; }
     }
 
-    static final long INF = Long.MAX_VALUE;
+    public static final long INF = Long.MAX_VALUE;
 
     private final int n;
     private final java.util.ArrayList<IntPair> pos;
