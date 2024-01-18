@@ -273,4 +273,20 @@ public class MatrixTest {
         Assert.assertEquals(200, b.get(1, 1));
         Assert.assertEquals(2*1 + 1, a.get(1, 1));
     }
+
+    @Test
+    public void TestModAsg() {
+        final long MOD = 998244353;
+        Matrix a = new Matrix(2);
+        a.set(0, 0, MOD* 5 + 1);
+        a.set(0, 1, 123);
+        a.set(1, 0, -1);
+        a.set(1, 1, -MOD* 5 -3);
+
+        a.modAsg((int)MOD);
+        Assert.assertEquals(1, a.get(0, 0));
+        Assert.assertEquals(123, a.get(0, 1));
+        Assert.assertEquals(MOD-1, a.get(1, 0));
+        Assert.assertEquals(MOD-3, a.get(1, 1));
+    }
 }

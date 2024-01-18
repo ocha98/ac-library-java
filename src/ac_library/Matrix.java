@@ -1,16 +1,15 @@
 package ac_library;
-import java.awt.Dimension;
-import java.util.Arrays;
 
 public class Matrix {
-    private long[] data;
-    private Dimension dim;
+    private final long[] data;
+    private final int height,  width;
 
     public Matrix(int h, int w, long e) {
         data = new long[h * w];
-        dim = new Dimension(w, h);
+        height = h;
+        width = w;
         if(e == 0) return;
-        Arrays.fill(data, e);
+        java.util.Arrays.fill(data, e);
     }
 
     public Matrix(int h, int w) {
@@ -28,68 +27,80 @@ public class Matrix {
     public Matrix(final long[][] a) {
         final int h = a.length;
         final int w = a[0].length;
-        dim = new Dimension(h, w);
+        height = h;
+        width = w;
         data = new long[h * w];
         for(int i = 0;i < h; ++i){
-            for(int j = 0;j < w; ++j){
-                data[i * w + j] = a[i][j];
-            }
+            System.arraycopy(a[i], 0, data, i*w, w);
         }
     }
 
-    public int get_h() {
-        return dim.height;
+    public int getHeight() {
+        return height;
     }
 
-    public int get_w() {
-        return dim.width;
+    public int getWidth() {
+        return width;
     }
 
     public long get(int i, int j) {
-        assert(0 <= i && i < dim.height);
-        assert(0 <= j && j < dim.width);
-        return data[i * dim.width + j];
+        assert 0 <= i && i < height;
+        assert 0 <= j && j < width;
+        return data[i * width + j];
     }
 
     public void set(int i, int j, long val) {
-        assert(0 <= i && i < dim.height);
-        assert(0 <= j && j < dim.width);
-        data[i * dim.width + j] = val;
+        assert 0 <= i && i < height;
+        assert 0 <= j && j < width;
+        data[i * width + j] = val;
     }
 
     public Matrix copy() {
-        Matrix ret = new Matrix(dim.height, dim.width);
+        Matrix ret = new Matrix(height, width);
         System.arraycopy(data, 0, ret.data, 0, data.length);
         return ret;
     }
 
-    public Dimension shape() {
-        return new Dimension(dim);
+    public java.awt.Dimension shape() {
+        return new java.awt.Dimension(width, height);
+    }
+
+    public void modAsg(final int mod) {
+        assert 0 < mod;
+        final int n = height*width;
+        for(int i = 0;i < n; ++i){
+            data[i] %= mod;
+            if(data[i] < 0){
+                data[i] += mod;
+            }
+        }
     }
 
     public Matrix mul(final Matrix other) {
-        if(dim.width != other.dim.height) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height, other.dim.width);
-        for(int i = 0;i < dim.height; ++i){
-            for(int k = 0;k < dim.width; ++k){
-                for(int j = 0;j < other.dim.width; ++j){
-                    ret.data[i * ret.dim.width + j] += data[i * dim.width + k] * other.data[k * other.dim.width + j];
+        if(width != other.height) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height, other.width);
+        for(int i = 0;i < height; ++i){
+            for(int k = 0;k < width; ++k){
+                final long self_ik = data[i * width + k];
+                for(int j = 0;j < other.width; ++j){
+                    ret.data[i * ret.width + j] += self_ik * other.data[k * other.width + j];
                 }
             }
         }
         return ret;
     }
     
+    // !注意!：自身とotherはmodが取られている前提
     public Matrix mulMod(final Matrix other, final int mod) {
-        if(dim.width != other.dim.height) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height, other.dim.width);
-        for(int i = 0;i < dim.height; ++i){
-            for(int k = 0;k < dim.width; ++k){
-                final long self_ik = data[i * dim.width + k] % mod;
-                for(int j = 0;j < other.dim.width; ++j){
-                    ret.data[i * ret.dim.width + j] += self_ik * (other.data[k * other.dim.width + j]%mod) % mod;
-                    if(ret.data[i * ret.dim.width + j] >= mod) {
-                        ret.data[i * ret.dim.width + j] -= mod;
+        if(width != other.height) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height, other.width);
+        for(int i = 0;i < height; ++i){
+            for(int k = 0;k < width; ++k){
+                final long self_ik = data[i * width + k];
+                for(int j = 0;j < other.width; ++j){
+                    ret.data[i * ret.width + j] += self_ik * other.data[k * other.width + j] % mod;
+                    if(ret.data[i * ret.width + j] >= mod) {
+                        ret.data[i * ret.width + j] -= mod;
                     }
                 }
             }
@@ -97,17 +108,19 @@ public class Matrix {
         return ret;
     }
 
+    // !注意!：自身とotherはmodが取られている前提
     public Matrix mulMod(final Matrix other, final ModIntFactory factory) {
-        if(dim.width != other.dim.height) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height, other.dim.width);
-        for(int i = 0;i < dim.height; ++i){
-            for(int k = 0;k < dim.width; ++k){
-                final ModIntFactory.ModInt self_ik = factory.create(data[i * dim.width + k]);
-                for(int j = 0;j < other.dim.width; ++j){
-                    final ModIntFactory.ModInt other_kj = factory.create(other.data[k * other.dim.width + j]);
-                    ret.data[i * ret.dim.width + j] += self_ik.mul(other_kj).value();
-                    if(ret.data[i * ret.dim.width + j] >= factory.getMod()) {
-                        ret.data[i * ret.dim.width + j] -= factory.getMod();
+        if(width != other.height) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height, other.width);
+        final long MOD = factory.getMod();
+        for(int i = 0;i < height; ++i){
+            for(int k = 0;k < width; ++k){
+                final ModIntFactory.ModInt self_ik = factory.raw(data[i * width + k]);
+                for(int j = 0;j < other.width; ++j){
+                    final ModIntFactory.ModInt other_kj = factory.raw(other.data[k * other.width + j]);
+                    ret.data[i * ret.width + j] += self_ik.mul(other_kj).value();
+                    if(ret.data[i * ret.width + j] >= MOD) {
+                        ret.data[i * ret.width + j] -= MOD;
                     }
                 }
             }
@@ -116,10 +129,10 @@ public class Matrix {
     }
 
     public Matrix pow(long n) {
-        if(dim.height != dim.width) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height);
-        for(int i = 0;i < dim.height; ++i){
-            ret.data[i * dim.width + i] = 1;
+        if(height != width) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height);
+        for(int i = 0;i < height; ++i){
+            ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
         while(n > 0){
@@ -130,11 +143,12 @@ public class Matrix {
         return ret;
     }
 
+    // !注意!：自身はmodが取られている前提
     public Matrix powMod(long n, final int mod) {
-        if(dim.height != dim.width) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height);
-        for(int i = 0;i < dim.height; ++i){
-            ret.data[i * dim.width + i] = 1;
+        if(height != width) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height);
+        for(int i = 0;i < height; ++i){
+            ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
         while(n > 0){
@@ -145,11 +159,12 @@ public class Matrix {
         return ret;
     }
 
+    // !注意!：自身はmodが取られている前提
     public Matrix powMod(long n, ModIntFactory mod) {
-        if(dim.height != dim.width) throw new RuntimeException("invalid shape");
-        Matrix ret = new Matrix(dim.height);
-        for(int i = 0;i < dim.height; ++i){
-            ret.data[i * dim.width + i] = 1;
+        if(height != width) throw new RuntimeException("invalid shape");
+        Matrix ret = new Matrix(height);
+        for(int i = 0;i < height; ++i){
+            ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
         while(n > 0){
@@ -160,3 +175,4 @@ public class Matrix {
         return ret;
     }
 }
+

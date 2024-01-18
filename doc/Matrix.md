@@ -92,6 +92,20 @@ $(\text{self}) (\text{other})$の行列積を計算します。
 **計算量**
 - $O(\text{self}.H \times \text{other}.W \times \text{self}.W)$
 
+### modAsg
+```java
+public void modAsg(final int mod)
+```
+
+全ての要素の`mod`を取ります。
+
+**制約**
+- $0 < \text{mod}$
+
+**計算量**
+- $O(H \times W )$
+
+
 ### mulMod
 ```java
 public Matrix mulMod(final Matrix other, final int mod)
@@ -103,6 +117,8 @@ $(\text{self}) (\text{other})$の行列積の`mod`で割った余りを求めま
 
 **制約**
 - $\text{self}.H = \text{other}.W$
+- `int mod`の場合、$0 \leq \text{self}_{i,k} \times \text{other}_{k,j} \leq \text{LONG\_MAX}$
+- `ModIntFactory`の場合、$0 \leq \text{self}_{i,j}, \text{other}_{i,j} < \text{MOD}$
 
 **計算量**
 - $O(\text{self}.H \times \text{other}.W \times \text{self}.W)$
@@ -133,6 +149,9 @@ public Matrix powMod(long n, ModIntFactory mod)
 
 **制約**
 - $H = W$
+- $\text{self}.H = \text{other}.W$
+- `int mod`の場合、$0 \leq \text{self}_{i,j}^2 \leq \text{LONG\_MAX}$
+- `ModIntFactory`の場合、$0 \leq \text{self}_{i,j} < \text{MOD}$
 
 **計算量**
 
