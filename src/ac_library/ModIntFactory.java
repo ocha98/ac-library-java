@@ -31,6 +31,11 @@ public class ModIntFactory {
 
     public ModInt create(long value) {
         if ((value %= mod) < 0) value += mod;
+        return this.raw(value);
+
+    }
+
+    public ModInt raw(long value) {
         if (usesMontgomery) {
             return new ModInt(maMontgomery.generate(value));
         } else {
