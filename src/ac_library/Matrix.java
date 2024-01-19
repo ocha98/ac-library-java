@@ -160,7 +160,7 @@ public class Matrix {
     }
 
     // !注意!：自身はmodが取られている前提
-    public Matrix powMod(long n, ModIntFactory mod) {
+    public Matrix powMod(long n, final ModIntFactory mod) {
         if(height != width) throw new RuntimeException("invalid shape");
         Matrix ret = new Matrix(height);
         for(int i = 0;i < height; ++i){
