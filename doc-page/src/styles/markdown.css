@@ -1,0 +1,36 @@
+.markdown {
+    box-shadow: 0 0 8px rgb(233, 233, 233);
+    padding: 1rem;
+}
+
+.markdown h1 {
+    border-bottom: 0.2rem solid #a7a6a6;
+    padding: 0.2rem 0rem 0.2rem 0rem;
+}
+
+.markdown h2 {
+    border-bottom: 0.1rem solid #a7a6a6;
+    padding: 0.2rem;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.markdown h3 {
+    border-left: 0.3rem solid #a7a6a6;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+}
+
+.markdown p > code {
+    color: black;
+    background-color: #f0f0f0;
+    padding: 0.1rem;
+    border: 0.08rem solid #c6c6c6;
+    font-size: 1rem;
+}
+
+.markdown ul code {
+    color: black;
+    background-color: #f0f0f0;
+    padding: 0.1rem;
+    border: 0.08rem solid #c6c6c6;
+    font-size: 1rem;
+}
