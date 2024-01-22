@@ -11,16 +11,16 @@ windowsなどでスクリプトが実行できない場合は、`bulder.sh`の�
 
 コンパイル時は、`-cp`で`ac_library.jar`のパスを指定し`javac`を実行してください。
 
-`<path_to_aclibrary.jar>`は適宜置き換えてください。
+`<path_to_ac_library.jar>`は適宜置き換えてください。
 
 ```bash
-javac -cp <path_to_aclibrary.jar>/ac_library.jar Main.java
+javac -cp <path_to_ac_library.jar>/ac_library.jar Main.java
 ```
 
 実行時も同様に指定してください。`ac_library.jar`の後ろに`:`がついていることに注意してください。
 
 ```bash
-java -cp <path_to_aclibrary.jar>/ac_library.jar: Main
+java -cp <path_to_ac_library.jar>/ac_library.jar: Main
 ```
 
 ## VSCode
@@ -28,7 +28,7 @@ java -cp <path_to_aclibrary.jar>/ac_library.jar: Main
 
 ```json
 "java.project.referencedLibraries": [
-    "<path_to_aclibrary.jar>/ac_library.jar"
+    "<path_to_ac_library.jar>/ac_library.jar"
 ]
 ```
 
