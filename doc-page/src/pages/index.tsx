@@ -13,6 +13,11 @@ export default function Home({ categories }: { categories: { [key: string]: stri
       </Head>
       <h1>AC Library Java Document</h1>
 
+      <h2 style={{ borderBottom: "0.1rem solid" }}>How to install</h2>
+      <p style={{fontSize: "1.3rem" }}>
+        <Link href="/install_guide">Install Guide</Link>
+      </p>
+
       <h2 style={{ borderBottom: "0.1rem solid" }}>List</h2>
       {
         Object.entries(categories).map(([category, slugs]) => (

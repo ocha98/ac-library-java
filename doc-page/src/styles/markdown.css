@@ -18,19 +18,3 @@
     border-left: 0.3rem solid #a7a6a6;
     padding: 0.2rem 0.5rem 0.2rem 0.5rem;
 }
-
-.markdown p > code {
-    color: black;
-    background-color: #f0f0f0;
-    padding: 0.1rem;
-    border: 0.08rem solid #c6c6c6;
-    font-size: 1rem;
-}
-
-.markdown ul code {
-    color: black;
-    background-color: #f0f0f0;
-    padding: 0.1rem;
-    border: 0.08rem solid #c6c6c6;
-    font-size: 1rem;
-}
