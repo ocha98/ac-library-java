@@ -1,4 +1,5 @@
 # クラス FenwickTree
+- - -
 
 長さ $N$ の `long` 型配列に対し,
 
