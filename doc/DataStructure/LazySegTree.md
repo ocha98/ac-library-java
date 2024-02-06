@@ -1,4 +1,5 @@
 # クラス LazySegTree
+- - -
 
 [モノイド](https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%8E%E3%82%A4%E3%83%89) $(S,\cdot :S \times S \rightarrow S,e \in S)$ と、 $S$ から $S$ への写像の集合 $F$ であって、以下の条件を満たすようなものについて使用できるデータ構造です。
 
