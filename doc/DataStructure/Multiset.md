@@ -1,4 +1,5 @@
 # クラス Multiset
+- - -
 
 本機能は AtCoderLibrary ではなく C++ 標準ライブラリ `std::multiset` の移植です.
 
