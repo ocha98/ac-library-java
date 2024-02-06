@@ -158,7 +158,7 @@ $S$ を引数にとり `boolean` を返す関数オブジェクトを渡して�
 以下の条件を両方満たす $l$ を (いずれか一つ) 返します。
 
 * $l = r$ もしくは $f(\mathrm{op}(a_l, a_{l+1}, \dots, a_{r-1})) =$ `true`
-* $l = 0$ もしくは $f(\mathrm{op}(a_{l-1}, a_{l+1}, \dots, a_{r-1})) =$ `false`
+* $l = 0$ もしくは $f(\mathrm{op}(a_{l-1}, a_l, \dots, a_{r-1})) =$ `false`
 
 $f$ が単調だとすれば、 $f(\mathrm{op}(a_l, a_{l+1}, \dots, a_{r-1})) =$ `true` となる最小の $l$ 、と解釈することが可能です。
 
