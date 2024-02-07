@@ -70,7 +70,7 @@ public void removeAll(T elm)
 
 ### merge
 ```java
-public static<T> Multiset<T> merge(Multiset<T> a, MMultiset<T> b)
+public static<T> Multiset<T> merge(Multiset<T> a, Multiset<T> b)
 ```
 `a` と `b` の和集合となる多重集合を新たに構成して返します。
 
