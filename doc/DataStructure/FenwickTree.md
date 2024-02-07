@@ -58,7 +58,7 @@ public long get(int p)
 配列の第 $p$ 要素を取得します。
 
 **計算量**
-* $O(\log N)$
+* $O(\log n)$
 
 ### sum
 ```java
