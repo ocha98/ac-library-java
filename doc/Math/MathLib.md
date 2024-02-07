@@ -12,7 +12,7 @@ public static long[] crt(long[] r, long[] m)
 
 同じ長さの配列 $r$ 、 $m$ を渡します。
 この配列の長さを $n$ としたとき、 $$x \equiv r_i \mod m_i$$ を解きます。  
-答えは存在するならば $y, z (0 \leq y < z = lcm(m))$ を用いて $x \equiv y \mod z$ の形で書けることが知られています。  
+答えは存在するならば $y, z (0 \leq y < z = \mathrm{lcm}(m))$ を用いて $x \equiv y \mod z$ の形で書けることが知られています。  
 この関数の返り値は、 $y$ と $z$ をこの順に格納した長さ $2$ の配列です。  
 答えがない場合は $[0,0]$ を返します。 $n=0$ のときは $[0,1]$ を返します。
 
@@ -24,7 +24,7 @@ public static long[] crt(long[] r, long[] m)
 public static long floor_sum(long n, long m, long a, long b)
 ```
 
-$$\sum_{i=0}^{n-1} floor(\frac{a \times i+b}{m})$$ を返します。
+$$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$$ を返します。
 
 **制約**
 * $0 \leq n \leq 10^9$
