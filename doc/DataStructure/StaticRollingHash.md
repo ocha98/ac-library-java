@@ -13,12 +13,19 @@
 ### StaticRollingHash
 ```java
 public StaticRollingHash(String str)
+```
+指定された文字列を元にハッシュ値を計算します。
+
+**計算量**
+* $O( \mathrm{str.length}() )$
+
+```java
 public StaticRollingHash(StaticRollingHash rh)
 ```
+`rh` を複製します。
 
-* 指定された文字列を元にハッシュ値を計算します。
-
-計算量: $O( \mathrm{length}() )$
+**計算量**
+* $O( \mathrm{rh.length}() )$
 
 ## メソッド
 ### getHash
@@ -169,4 +176,4 @@ public static StaticRollingHash valueOf(Object obj)
 `String` の `valueOf` メソッドによって生成された文字列を元に `StaticRollingHash` を生成します。
 
 **計算量**
-* $O(\mathrm{length}())$
+* `String::valueof` で生成される文字列を $S$ としたとき、 $O(S\mathrm{.length}())$
