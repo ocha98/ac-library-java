@@ -17,11 +17,11 @@ public static int[] suffixArray(int[] s)
 public static int[] suffixArray(int[] s, int upper)
 ```
 
-長さ $n$ の文字列 `s` の Suffix Array として、長さ $n$ の `int` 配列を返す。 
-Suffix Array `sa`は $(0,1,\ldots ,n-1)$ の順列であって、各 $i=0,1,\cdots , n-2$ について `s[sa[i]..n) < s[sa[i+1]..n)` を満たすもの。
+長さ $n$ の文字列 `s` の Suffix Array として、長さ $n$ の `int` 配列を返します。  
+Suffix Array `sa`は $(0,1,\ldots ,n-1)$ の順列であって、各 $i=0,1,\cdots , n-2$ について $\mathrm{s}[\mathrm{sa}_ {i} : n ) < \mathrm{s}[\mathrm{sa}_ {i+1} : n )$ を満たすものです。
 
 **制約**
-* $0\le n\le 10^8$
+* $0 \le n \le 10^8$
 * (4) $0\le \mathrm{upper}<10^8$
 * (4) $s$ のすべての要素 $x$ について $0\le x\le \mathrm{upper}$
 
@@ -41,8 +41,8 @@ public static int[] lcpArray(char[] s, int[] sa)
 public static int[] lcpArray(int[] s, int[] sa)
 ```
 
-長さ $n$ の文字列 `s` の LCP Array として、長さ $n-1$ の配列を返す。
-$i$ 番目の要素は `s[sa[i]..n), s[sa[i+1]..n)` の LCP ( Longest Common Prefix ) の長さ。
+長さ $n$ の文字列 `s` の LCP Array として、長さ $n-1$ の配列を返します。  
+$i$ 番目の要素は $\mathrm{s}[\mathrm{sa}_ i:n), \mathrm{s}[\mathrm{sa}_{i+1}:n)$ の LCP ( Longest Common Prefix ) の長さです。
 
 **制約**
 * `sa` は `s` の Suffix Array
@@ -65,8 +65,8 @@ public static int[] zAlgorithm(char[] s)
 public static int[] zAlgorithm(int[] s)
 ```
 
-入力の長さを $n$ として、長さ $n$ の配列を返す。
-$i$番目の要素は `s[0..n)` と `s[i..n)` の LCP ( Longest Common Prefix ) の長さ。
+入力の長さを $n$ として、長さ $n$ の配列を返します。  
+$i$番目の要素は $\mathrm{s}[0:n)$ と $\mathrm{s}[i:n)$ の LCP ( Longest Common Prefix ) の長さです。
 
 **制約**
 * $0\le n\le 10^8$
