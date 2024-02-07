@@ -136,7 +136,7 @@ $S$ を引数にとり `boolean` を返す関数を渡して使用します。
 以下の条件を両方満たす $r$ を (いずれか一つ) 返します。
 
 * $r = l$ もしくは $f(\mathrm{op}(a_l, a_{l+1}, \dots, a_{r-1})) =$ `true`
-* $r = n$ もしくは $f(\mathrm{op}(a_l, a{l+1}, \dots, a_r)) =$ `false`
+* $r = n$ もしくは $f(\mathrm{op}(a_l, a_{l+1}, \dots, a_r)) =$ `false`
 
 $f$ が単調だとすれば、 $f(\mathrm{op}(a_l, a_{l+1}, \dots, a_{r-1})) =$ `true` となる最大の $r$ 、と解釈することが可能です。
 
