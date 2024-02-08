@@ -1,4 +1,5 @@
 # Class Bridge
+- - -
 
 Given an undirected graph generated using GraphBuilder.makeGraphWithEdgeInfo(), this class finds all bridges in graph. Since GraphBuilder assumes $0$ -based indexing, this class also works assuming $0$ -based indexing. This class can handle multi-edges as well as self loops.
 
