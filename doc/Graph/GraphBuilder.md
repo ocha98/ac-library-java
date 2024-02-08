@@ -1,4 +1,5 @@
 # Class GraphBuilder
+- - -
 
 Creates graph in form of jagged arrays (as compared to Arraylist) for directed as well as undirected graphs from given set of edges in $0$ -indexing.
 
