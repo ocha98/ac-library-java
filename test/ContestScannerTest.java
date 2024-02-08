@@ -2,6 +2,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.math.BigInteger;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,20 +11,56 @@ import ac_library.ContestScanner;
 
 public class ContestScannerTest {
     @Test
-    public void numberInputTest() {
-        String input = "-3\n   -2     -1  0\n  \n\n1 2  3";
+    public void numberInputTest1() {
+        String input = "-3\n   -2     -1  0\n  \n\n1 2  3\n \n   ";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
 
-        ContestScanner sc = new ContestScanner();
+        ContestScanner sc = new ContestScanner(true);
         for(int i = -3;i <= 3;i++){
+            Assert.assertEquals(i, sc.nextLong());
+        }
+        Assert.assertEquals(sc.hasNext(), false);
+        System.setIn(System.in);
+    }
+
+    @Test
+    public void numberInputTest2() {
+        StringBuilder inputBuilder = new StringBuilder();
+        for (int i = -1000000; i <= 1000000; i++) {
+            inputBuilder.append(i).append(" ");
+        }
+
+        String input = inputBuilder.toString().trim();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        ContestScanner sc = new ContestScanner(true);
+        for (int i = -1000000; i <= 1000000; i++) {
             Assert.assertEquals(i, sc.nextLong());
         }
 
         System.setIn(System.in);
     }
+    @Test
+    public void numberInputTest3() {
+        StringBuilder inputBuilder = new StringBuilder();
+        for (int i = -1000000; i <= 1000000; i++) {
+            inputBuilder.append(i).append("\n");
+        }
 
+        String input = inputBuilder.toString().trim();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        ContestScanner sc = new ContestScanner();
+        for (int i = -1000000; i <= 1000000; i++) {
+            Assert.assertEquals(i, sc.nextLong());
+        }
+
+        System.setIn(System.in);
+    }
     @Test
     public void numberLongMaxMinTest() {
         String input = String.format("%d %d", Long.MAX_VALUE, Long.MIN_VALUE);
@@ -39,14 +76,28 @@ public class ContestScannerTest {
 
     @Test
     public void numberLongOverflowTest() {
-        String input = String.format("9223372036854775808 -9223372036854775809", Long.MAX_VALUE, Long.MAX_VALUE);
+        StringBuilder inputBuilder = new StringBuilder();
+        {
+            BigInteger bigIntMax = BigInteger.valueOf(Long.MAX_VALUE);
+            for (int i = 0; i < 20; i++) {
+                bigIntMax = bigIntMax.add(BigInteger.ONE);
+                inputBuilder.append(bigIntMax.toString()).append(" ");
+            }
+            BigInteger bigIntMin = BigInteger.valueOf(Long.MIN_VALUE);
+            for (int i = 0; i < 20; i++) {
+                bigIntMin = bigIntMin.subtract(BigInteger.ONE);
+                inputBuilder.append(bigIntMin.toString()).append(" ");
+            }
+        }
+        String input = inputBuilder.toString().trim();
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         ContestScanner sc = new ContestScanner();
-        Assert.assertThrows(ArithmeticException.class, () -> { sc.nextLong();});
-        Assert.assertThrows(ArithmeticException.class, () -> { sc.nextLong();});
-
+        for(int i = 0;i < 40; ++i){
+            Assert.assertThrows("i = "+ i, NumberFormatException.class, () -> { sc.nextLong();});
+        }
+        Assert.assertEquals(sc.hasNext(), false);
         System.setIn(System.in);
     }
 
@@ -104,5 +155,33 @@ public class ContestScannerTest {
 
         ContestScanner sc = new ContestScanner();
         Assert.assertThrows(NumberFormatException.class, () -> { sc.nextLong();});
+    }
+    
+    @Test
+    public void readLongArrayTest() {
+        String input = "3\n1 2 3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        ContestScanner sc = new ContestScanner();
+        int n = sc.nextInt();
+        long[] a = sc.nextLongArray(n);
+        Assert.assertArrayEquals(new long[]{1, 2, 3}, a);
+        Assert.assertEquals(sc.hasNext(), false);
+    }
+
+    @Test
+    public void readLongMatrixTest() {
+        String input = "1 2 3\n4 5 6\n7 8 9";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        
+        ContestScanner sc = new ContestScanner();
+        int h = 3, w = 3;
+        long[][] a = sc.nextLongMatrix(h, w);
+        Assert.assertArrayEquals(new long[]{1, 2, 3}, a[0]);
+        Assert.assertArrayEquals(new long[]{4, 5, 6}, a[1]);
+        Assert.assertArrayEquals(new long[]{7, 8, 9}, a[2]);
+        Assert.assertEquals(sc.hasNext(), false);
     }
 }

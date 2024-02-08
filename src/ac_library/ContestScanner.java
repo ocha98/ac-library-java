@@ -1,50 +1,64 @@
 package ac_library;
 public class ContestScanner {
     private final java.io.InputStream in;
-    private final byte[] buffer = new byte[1024];
+    private byte[] buffer;
+    private final static long MUL_LIMIT = -Long.MIN_VALUE/10;
+    private final boolean once_read;
     private int ptr = 0;
     private int buflen = 0;
 
-    public ContestScanner(java.io.InputStream in){
+    public ContestScanner(java.io.InputStream in, boolean once_read){
+        this.once_read = once_read;
+        if(!once_read){
+            this.buffer = new byte[1<<14];
+        }
         this.in = in;
     }
-    public ContestScanner(java.io.File file) throws java.io.FileNotFoundException {
-        this(new java.io.BufferedInputStream(new java.io.FileInputStream(file)));
+    public ContestScanner(java.io.File file, boolean once_read) throws java.io.FileNotFoundException {
+        this(new java.io.FileInputStream(file), once_read);
     }
-    public ContestScanner(){
-        this(System.in);
+    public ContestScanner() {
+        this(System.in, System.getProperty("ONLINE_JUDGE") == "true");
+    }
+    public ContestScanner(boolean once_read) {
+        this(System.in, once_read);
     }
  
     private boolean hasNextByte() {
-        if (ptr < buflen) {
-            return true;
-        }else{
-            ptr = 0;
-            try {
+        if (ptr < buflen) return true;
+        ptr = 0;
+        try {
+            if(once_read){
+                buffer = in.readAllBytes();
+                buflen = buffer.length;
+            }else{
                 buflen = in.read(buffer);
-            } catch (java.io.IOException e) {
-                e.printStackTrace();
             }
-            if (buflen <= 0) {
-                return false;
-            }
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
-        return true;
+        return buflen > 0;
     }
-    private int readByte() { 
-        if (hasNextByte()) return buffer[ptr++]; else return -1;
+    private byte readByte() {
+        if(!hasNextByte()) return -1;
+        return buffer[ptr++];
     }
     private static boolean isPrintableChar(int c) {
         return 33 <= c && c <= 126;
     }
-    public boolean hasNext() {
-        while(hasNextByte() && !isPrintableChar(buffer[ptr])) ptr++;
+    private static boolean isNumber(int c) {
+        return 48 <= c && c <= 57;
+    }
+    public final boolean hasNext() {
+        while(hasNextByte() && !isPrintableChar(buffer[ptr]))++ptr;
         return hasNextByte();
     }
+
     public String next() {
         if (!hasNext()) throw new java.util.NoSuchElementException();
         StringBuilder sb = new StringBuilder();
-        int b = readByte();
+        byte b = readByte();
         while(isPrintableChar(b)) {
             sb.appendCodePoint(b);
             b = readByte();
@@ -52,36 +66,31 @@ public class ContestScanner {
         return sb.toString();
     }
  
-    public long nextLong() {
+    public final long nextLong() {
         if (!hasNext()) throw new java.util.NoSuchElementException();
-        int b = readByte();
-        final long sign = b == '-' ? -1 : 1;
-        if (b == '-') {
+        byte b = readByte();
+        final boolean minus = b == '-';
+        if (minus) {
             b = readByte();
-        }
-        if (b < '0' || '9' < b) {
-            throw new NumberFormatException();
         }
 
         long n = 0;
-        while (true) {
-            if (b < '0' || '9' < b)  throw new NumberFormatException();
+        while(isPrintableChar(b)) {
+            if (!isNumber(b) || n < MUL_LIMIT)throw new NumberFormatException();// 10倍オーバーフローチェック
+            n = ((n<<2)+n)<<1; // n*10 = (n*4 + n)*2;
             final long digit = b - '0';
-            try {
-                n = Math.multiplyExact(n, 10L);
-                n = Math.addExact(n, sign * digit);
-            } catch (ArithmeticException e) {
-                throw new ArithmeticException(
-                    String.format("failed to parse to long because of overflow")
-                );
-            }
+            if (n < Long.MIN_VALUE + digit)throw new NumberFormatException();// 加算オーバーフローチェック
+            n -= digit;
             b = readByte();
-            if (!isPrintableChar(b)) {
-                return n;
-            }
+        }
+        if(minus) {
+            return n;
+        } else {
+            if(n == Long.MIN_VALUE)throw new NumberFormatException();
+            return -n;
         }
     }
-    public int nextInt() {
+    public final int nextInt() {
         long nl = nextLong();
         if (nl < Integer.MIN_VALUE || nl > Integer.MAX_VALUE) throw new NumberFormatException();
         return (int) nl;
