@@ -7,6 +7,7 @@ import org.junit.Test;
 import ac_library.ContestPrinter;
 
 public class ContestPrinterTest {
+    // methods test
     @Test
     public void printTestExFloat() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -23,8 +24,9 @@ public class ContestPrinterTest {
         cp.print((long)-1);
         cp.print(true);
         cp.print(false);
+        cp.print("abcd");
         cp.flush();
-        Assert.assertEquals("1-111-11-11-1truefalse", out.toString());
+        Assert.assertEquals("1-111-11-11-1truefalseabcd", out.toString());
         System.setOut(System.out);
     }
     @Test
@@ -43,8 +45,9 @@ public class ContestPrinterTest {
         cp.println((long)-1);
         cp.println(true);
         cp.println(false);
+        cp.println("abcd");
         cp.flush();
-        Assert.assertEquals("1\n-1\n1\n1\n-1\n1\n-1\n1\n-1\ntrue\nfalse\n", out.toString());
+        Assert.assertEquals("1\n-1\n1\n1\n-1\n1\n-1\n1\n-1\ntrue\nfalse\nabcd\n", out.toString());
         System.setOut(System.out);
     }
     @Test
@@ -52,11 +55,11 @@ public class ContestPrinterTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.print(1.0);
+        cp.print(123.456);
         cp.flush();
         String s = out.toString();
         Assert.assertTrue(s.length() >= 20);
-        Assert.assertTrue(Math.abs(1.0 - Double.parseDouble(out.toString())) < 1e-9);
+        Assert.assertEquals(Double.parseDouble(s), 123.456, 1e-9);
         System.setOut(System.out);
     }
     @Test
@@ -64,14 +67,81 @@ public class ContestPrinterTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.println(1.0);
+        cp.println(123.456);
+        cp.flush();
+        String s = out.toString();
+        Assert.assertTrue(s.endsWith("\n"));
+        Assert.assertTrue(s.length() >= 20);
+        Assert.assertEquals(Double.parseDouble(s), 123.456, 1e-9);
+        System.setOut(System.out);
+    }
+    @Test
+    public void floatPrintTest() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.print(123.456f);
         cp.flush();
         String s = out.toString();
         Assert.assertTrue(s.length() >= 20);
-        Assert.assertTrue(Math.abs(1.0 - Double.parseDouble(out.toString())) < 1e-9);
+        Assert.assertEquals(Float.parseFloat(s), 123.456f, 1e-9);
+        System.setOut(System.out);
+    }
+    @Test
+    public void floatPrintlnTest() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.println(123.456f);
+        cp.flush();
+        String s = out.toString();
+        Assert.assertTrue(s.endsWith("\n"));
+        Assert.assertTrue(s.length() >= 20);
+        Assert.assertEquals(Float.parseFloat(s), 123.456f, 1e-9);
+        System.setOut(System.out);
+    }
+    @Test
+    public void printlnArrayTestInt() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.printlnArray(new int[]{1, 2, 3}, "$");
+        cp.flush();
+        Assert.assertEquals("1$2$3\n", out.toString());
+        System.setOut(System.out);
+    }
+    @Test
+    public void printlnArrayTest2Int() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.printlnArray(new int[]{1, 2, 3});
+        cp.flush();
+        Assert.assertEquals("1 2 3\n", out.toString());
+        System.setOut(System.out);
+    }
+    @Test
+    public void printlnArrayTestLong() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.printlnArray(new long[]{1, 2, 3}, "$");
+        cp.flush();
+        Assert.assertEquals("1$2$3\n", out.toString());
+        System.setOut(System.out);
+    }
+    @Test
+    public void printlnArrayTest2Long() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        ContestPrinter cp = new ContestPrinter();
+        cp.printlnArray(new long[]{1, 2, 3});
+        cp.flush();
+        Assert.assertEquals("1 2 3\n", out.toString());
         System.setOut(System.out);
     }
 
+    // additional tests
     @Test
     public void printNumberTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -87,7 +157,7 @@ public class ContestPrinterTest {
         System.setOut(System.out);
     }
     @Test
-    public void printNumberTestNearMax() {
+    public void printNumberTestNearLongMax() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
@@ -103,7 +173,7 @@ public class ContestPrinterTest {
         System.setOut(System.out);
     }
     @Test
-    public void printNumberTestNerMin() {
+    public void printNumberTestNearLongMin() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
@@ -118,36 +188,50 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
-
     @Test
-    public void printStringTest() {
+    public void printnumberTestNearIntMax() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.print("test");
+        StringBuilder builder = new StringBuilder();
+        for(int i = Integer.MAX_VALUE - 10; i < Integer.MAX_VALUE; i++){
+            cp.print(i);
+            builder.append(i);
+        }
+        cp.print(Integer.MAX_VALUE);
+        builder.append(Integer.MAX_VALUE);
         cp.flush();
-        Assert.assertEquals("test", out.toString());
-        System.setOut(System.out);
-    }
-
-    @Test
-    public void printArrayIntTest() {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new int[]{1, 2, 3}, " ");
-        cp.flush();
-        Assert.assertEquals("1 2 3\n", out.toString());
+        Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
     @Test
-    public void printArrayLongTest() {
+    public void printNumberTestNearIntMin() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new long[]{1, 2, 3}, " ");
+        StringBuilder builder = new StringBuilder();
+        for(int i = Integer.MIN_VALUE; i < Integer.MIN_VALUE + 10; i++){
+            cp.print(i);
+            builder.append(i);
+        }
+        cp.print(Integer.MIN_VALUE);
+        builder.append(Integer.MIN_VALUE);
         cp.flush();
-        Assert.assertEquals("1 2 3\n", out.toString());
+        Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
+    }
+    @Test
+    public void printDoubleRangeTest() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        for(double i = -100.123;i <= 100.123;i += 0.123){
+            System.setOut(new PrintStream(out));
+            ContestPrinter cp = new ContestPrinter();
+            cp.println(i);
+            cp.flush();
+            Assert.assertEquals(Double.parseDouble(out.toString()), i, 1e-9);
+            out.reset();
+            System.setOut(System.out);
+        }
+
     }
 }

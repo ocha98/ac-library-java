@@ -112,13 +112,13 @@ public class ContestPrinter implements AutoCloseable {
         this.write(s.getBytes());
     }
     public final void print(boolean x) {
-        this.print(String.valueOf(x));
+        this.print(""+x);
     }
     public final void print(char x) {
-        this.print(String.valueOf(x));
+        this.print(""+x);
     }
     public final void print(byte x) {
-        this.print(""+x);
+        this.print(""+x);;
     }
     public final void print(short x) {
         this.print(""+x);
@@ -213,7 +213,7 @@ public class ContestPrinter implements AutoCloseable {
     public void printlnArray(int[] array){
         this.printlnArray(array, " ");
     }
-    public void printArray(int[] array, String separator, java.util.function.IntUnaryOperator map){
+    public void printlnArray(int[] array, String separator, java.util.function.IntUnaryOperator map){
         int n = array.length;
         if(n==0){
             this.println();
@@ -225,8 +225,8 @@ public class ContestPrinter implements AutoCloseable {
         }
         this.println(map.applyAsInt(array[n-1]));
     }
-    public void printArray(int[] array, java.util.function.IntUnaryOperator map){
-        this.printArray(array, " ", map);
+    public void printlnArray(int[] array, java.util.function.IntUnaryOperator map){
+        this.printlnArray(array, " ", map);
     }
 
     public void printlnArray(long[] array, String separator){
@@ -244,7 +244,7 @@ public class ContestPrinter implements AutoCloseable {
     public void printlnArray(long[] array){
         this.printlnArray(array, " ");
     }
-    public void printArray(long[] array, String separator, java.util.function.LongUnaryOperator map){
+    public void printlnArray(long[] array, String separator, java.util.function.LongUnaryOperator map){
         int n = array.length;
         if(n==0){
             this.println();
@@ -256,10 +256,10 @@ public class ContestPrinter implements AutoCloseable {
         }
         this.println(map.applyAsLong(array[n-1]));
     }
-    public void printArray(long[] array, java.util.function.LongUnaryOperator map){
-        this.printArray(array, " ", map);
+    public void printlnArray(long[] array, java.util.function.LongUnaryOperator map){
+        this.printlnArray(array, " ", map);
     }
-    public <T> void printArray(T[] array, String separator){
+    public <T> void printlnArray(T[] array, String separator){
         int n = array.length;
         if(n==0){
             this.println();
@@ -271,10 +271,10 @@ public class ContestPrinter implements AutoCloseable {
         }
         this.println(array[n-1].toString());
     }
-    public <T> void printArray(T[] array){
-        this.printArray(array, " ");
+    public <T> void printlnArray(T[] array){
+        this.printlnArray(array, " ");
     }
-    public <T> void printArray(T[] array, String separator, java.util.function.UnaryOperator<T> map){
+    public <T> void printlnArray(T[] array, String separator, java.util.function.UnaryOperator<T> map){
         int n = array.length;
         if(n==0){
             this.println();
@@ -286,7 +286,7 @@ public class ContestPrinter implements AutoCloseable {
         }
         this.println(map.apply(array[n-1]).toString());
     }
-    public <T> void printArray(T[] array, java.util.function.UnaryOperator<T> map){
-        this.printArray(array, " ", map);
+    public <T> void printlnArray(T[] array, java.util.function.UnaryOperator<T> map){
+        this.printlnArray(array, " ", map);
     }
 }

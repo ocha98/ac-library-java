@@ -1,4 +1,3 @@
-
 # クラス ContestPrinter
 競技プログラミングで利用できる出力クラスです。
 
@@ -28,22 +27,22 @@ public final void println(type x)
 
 `print`メゾットと異なるのは最後に改行を出力します。
 
-### printArray
+### printlnArray
 ```java
-public void printArray(int[] array, String separator, java.util.function.IntUnaryOperator map)
-public void printArray(int[] array, java.util.function.IntUnaryOperator map)
-public void printArray(int[] array, String separator)
-public void printArray(int[] array)
+public void printlnArray(int[] array)
+public void printlnArray(int[] array, String separator)
+public void printlnArray(int[] array, java.util.function.IntUnaryOperator map)
+public void printlnArray(int[] array, String separator, java.util.function.IntUnaryOperator map)
 
-public void printArray(long[] array, String separator, java.util.function.LongUnaryOperator map)
-public void printArray(long[] array, java.util.function.LongUnaryOperator map)
-public void printArray(long[] array, String separator)
-public void printArray(long[] array)
+public void printlnArray(long[] array)
+public void printlnArray(long[] array, String separator)
+public void printlnArray(long[] array, java.util.function.LongUnaryOperator map)
+public void printlnArray(long[] array, String separator, java.util.function.LongUnaryOperator map)
 
-public void printArray(double[] array, String separator, java.util.function.DoubleUnaryOperator map)
-public void printArray(double[] array, java.util.function.DoubleUnaryOperator map)
-public void printArray(double[] array, String separator)
-public void printArray(double[] array)
+public <T> void printlnArray(T[] array)
+public <T> void printlnArray(T[] array, String separator)
+public <T> void printlnArray(T[] array, java.util.function.UnaryOperator<T> map)
+public <T> void printlnArray(T[] array, String separator, java.util.function.UnaryOperator<T> map)
 ```
 `array`の各要素に対して関数`map`を適用し、`separator`区切りで出力します。行末には`separator`は含まれず, 改行が挿入されます。
 `map`及び`separator`は省略可能で、省略した場合は恒等写像/半角スペースが与えられた場合と同等の出力になります。

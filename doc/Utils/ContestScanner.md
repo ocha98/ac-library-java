@@ -6,18 +6,13 @@
 ## コンストラクタ
 
 ```java
-public ContestScanner(java.io.InputStream in, boolean once_read) // (1)
-public ContestScanner(java.io.File file, boolean once_read) // (2)
-public ContestScanner(boolean once_read) // (3)
-public ContestScanner() // (4)
+public ContestScanner(java.io.InputStream in) // (1)
+public ContestScanner(java.io.File file,) // (2)
+public ContestScanner() // (3)
 ```
 指定された入力ストリームからContestScannerを構築します。
 
-`once_read`を`true`にした場合、入力をEOFまで一括で読み取ります。
-
-（３）、（４） は`System.in`を入力ストリームとします。また、（４）ではシステムプロパティに`ONLINCE_JUDGE=true`が設定されていると、`once_read`が`true`になります。
-
-⚠️注意⚠️：インタラクティブ問題では必ず`once_read`を`false`にしてください。
+（３）は（１）にSystem.inを渡したものと同等です。
 
 ## メソッド
 
@@ -47,6 +42,12 @@ public double nextDouble()
 
 不正な文字やオーバーフローが発生する場合`NumberFormatException`が発生します。
 
+```java
+public int nextInt1()
+public long nextLong1()
+```
+入力を受け取る際、自動で１デクリメントします。
+
 ### 配列入力
 ```java
 public long[] nextLongArray(int length)
@@ -54,6 +55,12 @@ public int[] nextIntArray(int length)
 public double[] nextDoubleArray(int length)
 ```
 `length`個の連続した値を読み取り, 配列として返します。
+
+```java
+public long[] nextLongArray1(int length)
+public int[] nextIntArray1(int length)
+```
+入力を受け取る際、すべての要素を１デクリメントします。
 
 ```java
 public long[] nextLongArray(int length, java.util.function.LongUnaryOperator map)
@@ -70,6 +77,12 @@ public int[][] nextIntMatrix(int height, int width)
 public double[][] nextDoubleMatrix(int height, int width)
 ```
 H行W列に並んだ値を読み取り、二次元配列として返します。
+
+```java
+public long[][] nextLongMatrix1(int height, int width)
+public int[][] nextIntMatrix1(int height, int width)
+```
+入力を受け取る際、すべての要素を１デクリメントします。
 
 ```java
 public char[][] nextCharMatrix(int height, int width)
