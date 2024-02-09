@@ -1,12 +1,11 @@
 # クラス ModIntFactory, ModIntFactory$ModInt
-
 - - -
 
-剰余演算をサポートするクラスです.
+剰余演算をサポートするクラスです。
 
 ## 使い方
 
-1. `ModIntFactory` のインスタンス (ModInt のファクトリ) を生成
+1. `ModIntFactory` のインスタンス ( ModInt のファクトリ) を生成
 2. 生成した Factory から `ModIntFactory$ModInt` を生成
 
 ```java
@@ -23,7 +22,7 @@ public static void main(String[] args) {
 }
 ```
 
-`Java 11` を使うことの出来る環境では，以下のように簡潔に書くことが出来ます.
+`Java 11` を使うことの出来る環境では，以下のように簡潔に書くことが出来ます。
 
 ```java
 public static void main(String[] args) {
@@ -35,73 +34,91 @@ public static void main(String[] args) {
 }
 ```
 
-## コンストラクタ
 
-### ModIntFactory
+# ModIntFactory
+## コンストラクタ
 
 ```java
 public ModIntFactory(int mod)
 ```
 
-`ModInt` を生成するファクトリを生成します.
-計算量: $O(1)$
+`ModInt` を生成するファクトリを生成します。
 
-### ModIntFactory$ModInt
-
-外部からコンストラクタを呼ぶことは出来ません. (呼ばないで下さい)
+**計算量**
+* $O(1)$
 
 ## メソッド
-
-### ModIntFactory
-
+### create
 ```java
 public ModInt create(long value)
 ```
 
-値 `value % mod` を持つ `ModInt` を生成します.
-計算量: $O(1)$
+値 $\mathrm{value}$ % $\mathrm{mod}$ を持つ `ModInt` を生成します。
 
+**計算量**
+* $O(1)$
+
+### factorial
 ```java
 public ModInt factorial(int i)
 ```
 
-値 `(i!) % mod` を持つ `ModInt` を生成します.
+値 $i!$ % $\mathrm{mod}$ を持つ `ModInt` を生成します。
 
+**計算量**
+* これまでの最大の $i$ を $i_{\mathrm{max}}$ としたとき、 $O(\max(1,i-i_{\mathrm{max}}))$
+
+### permutation
 ```java
 public ModInt permutation(int n, int r)
 ```
 
-値 `n P r` を持つ `ModInt` を生成します.
+値 ${}_n \mathrm{P}_r$ を持つ `ModInt` を生成します。
 
+**計算量**
+* これまでの最大の $n$ を $n_{\mathrm{max}}$ としたとき、 $O(\max(1,n-n_{\mathrm{max}}))$
+
+### combination
 ```java
 public ModInt combination(int n, int r)
 ```
 
-値 `n C r` を持つ `ModInt` を生成します.
+値 ${}_n \mathrm{C}_r$ を持つ `ModInt` を生成します。
 
-### ModIntFactory$ModInt
+**計算量**
+* これまでの最大の $n$ を $n_{\mathrm{max}}$ としたとき、 $O(\max(1,n-n_{\mathrm{max}}))$
 
-#### mod
+# ModIntFactory$ModInt
+## コンストラクタ
+
+外部からコンストラクタを呼ぶことは出来ません。
+
+## メソッド
+
+### mod
 
 ```java
 public int mod()
 ```
 
-`mod` を返します．
+`mod` を返します。
 
-計算量: $O(1)$
+**計算量**
+* $O(1)$
 
-#### value
+### value
 
 ```java
 public int value()
 ```
 
-保持している値を返します．__注意: `ModInt` のフィールド `int value` に直接アクセスしないで下さい. 正しい値が取得できない可能性があります.__
+保持している値を返します。  
+__注意: `ModInt` のフィールド `int value` に直接アクセスしないで下さい. 正しい値が取得できない可能性があります。__
 
-計算量: $O(1)$
+**計算量**
+* $O(1)$
 
-#### add
+### add
 
 ```java
 // (1)
@@ -118,19 +135,18 @@ public ModInt add(ModInt mi1, ModInt... mis)
 public ModInt add(long mi)
 ```
 
-1. 値 `(a + b) % mod` を持つ `ModInt` を新たに生成します.
-2. 値 `(a + b + c) % mod` を持つ `ModInt` を新たに生成します.
-3. 値 `(a + b + c + d) % mod` を持つ `ModInt` を新たに生成します.
-4. 値 `(a + b + c + d + e) % mod` を持つ `ModInt` を新たに生成します.
-5. 値 `(a + b + c + d + e + f + ...) % mod` を持つ `ModInt` を新たに生成します.
-6. 値 `(a + b) % mod` を持つ `ModInt` を新たに生成します. 定数の加算でこれを用いると便利です.
+1. 値 $(a + b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+2. 値 $(a + b + c)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+3. 値 $(a + b + c + d)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+4. 値 $(a + b + c + d + e)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+5. 値 $(a + b + c + d + e + f + \dots)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+6. 値 $(a + b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。 定数の加算でこれを用いると便利です。
 
-計算量:
+**計算量**
+* (1)~(4)、(6): $O(1)$
+* (5): $n$ を可変長引数の長さとして、 $O(n)$
 
-- (1)~(4), (6): $O(1)$
-- (5): $n$ を可変長引数の長さとして，$O(n)$
-
-#### sub
+### sub
 
 ```java
 // (1)
@@ -139,12 +155,13 @@ public ModInt sub(ModInt mi)
 public ModInt sub(long mi)
 ```
 
-1. 値 `(a - b) % mod` を持つ `ModInt` を新たに生成します.
-2. 値 `(a - b) % mod` を持つ `ModInt` を新たに生成します. 定数の減算でこれを用いると便利です.
+1. 値 $(a - b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+2. 値 $(a - b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。 定数の減算でこれを用いると便利です。
 
-計算量: $O(1)$
+**計算量**
+* $O(1)$
 
-#### mul
+### mul
 
 ```java
 // (1)
@@ -161,19 +178,18 @@ public ModInt mul(ModInt mi1, ModInt... mis)
 public ModInt mul(long mi)
 ```
 
-1. 値 `(a * b) % mod` を持つ `ModInt` を新たに生成します.
-2. 値 `(a * b * c) % mod` を持つ `ModInt` を新たに生成します.
-3. 値 `(a * b * c * d) % mod` を持つ `ModInt` を新たに生成します.
-4. 値 `(a * b * c * d * e) % mod` を持つ `ModInt` を新たに生成します.
-5. 値 `(a * b * c * d * e * f * ...) % mod` を持つ `ModInt` を新たに生成します.
-6. 値 `(a * b) % mod` を持つ `ModInt` を新たに生成します. 定数の乗算でこれを用いると便利です.
+1. 値 $(a \times b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+2. 値 $(a \times b \times c)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+3. 値 $(a \times b \times c \times d)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+4. 値 $(a \times b \times c \times d \times e)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+5. 値 $(a \times b \times c \times d \times e \times f \times \dots)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。
+6. 値 $(a \times b)$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。 定数の乗算でこれを用いると便利です。
 
-計算量:
+**計算量**
+* (1)~(4)、(6): $O(1)$
+* (5): $n$ を可変長引数の長さとして、 $O(n)$
 
-- (1)~(4), (6): $O(1)$
-- (5): $n$ を可変長引数の長さとして，$O(n)$
-
-#### div
+### div
 
 ```java
 // (1)
@@ -182,40 +198,41 @@ public ModInt div(ModInt mi)
 public ModInt div(long mi)
 ```
 
-1. 値 `(a * b^(-1)) % mod` を持つ `ModInt` を新たに生成します. ただし，`b^(-1)` は `(b * x) % mod = 1` を満たす `x` です.
-2. 値 `(a * b^(-1)) % mod` を持つ `ModInt` を新たに生成します. 定数の除算でこれを用いると便利です.
+1. 値 $(a \times b^{-1})$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。 ただし、 $b^{-1}$ は $(b \times x)$ % $\mathrm{mod} = 1$ を満たす $x$ です。
+2. 値 $(a \times b^{-1})$ % $\mathrm{mod}$ を持つ `ModInt` を新たに生成します。 定数の除算でこれを用いると便利です。
 
-計算量: $O(\log \mod)$
+**制約**
+* $\mathrm{gcd}(b, mod) = 1$
 
-制約
+**計算量**
+* $O(\log \mathrm{mod})$
 
-- `gcd(b, mod) = 1`
-
-#### inv
+### inv
 
 ```java
 public ModInt inv()
 ```
 
-`ModInt a` に対して, `(a * x) % mod = 1` を満たす値 `x` を持つ `ModInt` を新たに生成します (`a` の値は書き換わりません).
+`ModInt a` に対して、 $(a \times x)$ % $\mathrm{mod} = 1$ を満たす値 $x$ を持つ `ModInt` を新たに生成します ( $a$ の値は書き換わりません)。
 
-計算量: $O(\log \rm{mod})$
+**計算量**
+* $O(\log \mathrm{mod})$
 
-制約
+**制約**
+* $\mathrm{gcd}(a, mod) = 1$
 
-- `gcd(a, mod) = 1`
-
-#### pow
+### pow
 
 ```java
 public ModInt pow(long n)
 ```
 
-`(a ^ n) % mod` を満たす値 `x` を持つ `ModInt` を新たに生成します (`a` の値は書き換わりません).
+$a^n$ % $\mathrm{mod}$ を満たす値 $x$ を持つ `ModInt` を新たに生成します ( $a$ の値は書き換わりません)。
 
-計算量: $O(\log n)$
+**計算量**
+* $O(\log n)$
 
-#### addAsg
+### addAsg
 
 ```java
 // (1)
@@ -232,19 +249,18 @@ public ModInt addAsg(ModInt... mis)
 public ModInt addAsg(long mi)
 ```
 
-1. `a += b` を行います. `a` の値は書き換えられます.
-2. `a += b + c` を行います. `a` の値は書き換えられます.
-3. `a += b + c + d` を行います. `a` の値は書き換えられます.
-4. `a += b + c + d + e` を行います. `a` の値は書き換えられます.
-5. `a += b + c + d + e + f + ...` を行います. `a` の値は書き換えられます.
-6. `a += b` を行います. `a` の値は書き換えられます. 定数の加算でこれを用いると便利です.
+1. $a = a + b$ を行います。 $a$ の値は書き換えられます。
+2. $a = a + b + c$ を行います。 $a$ の値は書き換えられます。
+3. $a = a + b + c + d$ を行います。 $a$ の値は書き換えられます。
+4. $a = a + b + c + d + e$ を行います。 $a$ の値は書き換えられます。
+5. $a = a + b + c + d + e + f + ...$ を行います。 $a$ の値は書き換えられます。
+6. $a = a + b$ を行います. $a$ の値は書き換えられます。 定数の加算でこれを用いると便利です。
 
-計算量:
+**計算量**
+* (1)~(4)、(6): $O(1)$
+* (5): $n$ を可変長引数の長さとして、 $O(n)$
 
-- (1)~(4), (6): $O(1)$
-- (5): $n$ を可変長引数の長さとして，$O(n)$
-
-#### subAsg
+### subAsg
 
 ```java
 // (1)
@@ -253,12 +269,13 @@ public ModInt subAsg(ModInt mi)
 public ModInt subAsg(long mi)
 ```
 
-1. `a -= b` を行います. `a` の値は書き換えられます.
-2. `a -= b` を行います. `a` の値は書き換えられます. 定数の減算でこれを用いると便利です.
+1. $a = a - b$ を行います。 $a$ の値は書き換えられます。
+2. $a = a - b$ を行います。 $a$ の値は書き換えられます。定数の減算でこれを用いると便利です。
 
-計算量: $O(1)$
+**計算量**
+* $O(1)$
 
-#### mulAsg
+### mulAsg
 
 ```java
 // (1)
@@ -275,19 +292,18 @@ public ModInt mulAsg(ModInt... mis)
 public ModInt mulAsg(long mi)
 ```
 
-1. `a *= b` を行います. `a` の値は書き換えられます.
-2. `a *= b * c` を行います. `a` の値は書き換えられます.
-3. `a *= b * c * d` を行います. `a` の値は書き換えられます.
-4. `a *= b * c * d * e` を行います. `a` の値は書き換えられます.
-5. `a *= b * c * d * e * f * ...` を行います. `a` の値は書き換えられます.
-6. `a *= b` を行います. `a` の値は書き換えられます. 定数の乗算でこれを用いると便利です.
+1. $a = a \times b$ を行います。 `a` の値は書き換えられます。
+2. $a = a \times b \times c$ を行います。 `a` の値は書き換えられます。
+3. $a = a \times b \times c \times d$ を行います。 `a` の値は書き換えられます。
+4. $a = a \times b \times c \times d \times e$ を行います。 `a` の値は書き換えられます。
+5. $a = a \times b \times c \times d \times e \times f \times \dots$ を行います。 `a` の値は書き換えられます。
+6. $a = a \times b$ を行います。 `a` の値は書き換えられます。 定数の乗算でこれを用いると便利です。
 
-計算量:
+**計算量**
+* (1)~(4)、(6): $O(1)$
+* (5): $n$ を可変長引数の長さとして、 $O(n)$
 
-- (1)~(4), (6): $O(1)$
-- (5): $n$ を可変長引数の長さとして，$O(n)$
-
-#### divAsg
+### divAsg
 
 ```java
 // (1)
@@ -296,11 +312,11 @@ public ModInt divAsg(ModInt mi)
 public ModInt divAsg(long mi)
 ```
 
-1. `a *= b^(-1)` を行います. `a` の値は書き換えられます. ただし，`b^(-1)` は `(b * x) % mod = 1` を満たす `x` です.
-2. `a *= b^(-1)` を行います. `a` の値は書き換えられます. 定数の除算でこれを用いると便利です.
+1. $a = a \times b^{-1}$ を行います。 $a$ の値は書き換えられます。 ただし、 $b^{-1}$ は $(b \times x)$ % $\mathrm{mod} = 1$ を満たす $x$ です。
+2. $a = a \times b^{-1}$ を行います。 $a$ の値は書き換えられます。 定数の除算でこれを用いると便利です。
 
-計算量: $O(\log \mod)$
+**制約**
+* $\mathrm{gcd}(b, \mathrm{mod}) = 1$
 
-制約
-
-- `gcd(b, mod) = 1`
+**計算量**
+* $O(\log \mathrm{mod})$

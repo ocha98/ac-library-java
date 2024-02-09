@@ -1,4 +1,6 @@
-# クラスMatrix
+# クラス Matrix
+- - -
+
 行列演算を行います。
 
 ## コンストラクタ
@@ -50,7 +52,7 @@ public int getWidth()
 public void set(int i, int j, long val)
 ```
 
-$i$ 行目、$j$ 列目に`val`を代入します。
+$i$ 行目、 $j$ 列目に `val` を代入します。
 
 **制約**
 - $0 \leq i < H$
@@ -74,7 +76,7 @@ public Matrix copy()
 public java.awt.Dimension shape()
 ```
 
-行数と列数を`java.awt.Dimension`で返します
+行数と列数を `java.awt.Dimension` で返します
 
 **計算量**
 - $O(1)$
@@ -84,7 +86,7 @@ public java.awt.Dimension shape()
 public Matrix mul(final Matrix other)
 ```
 
-$(\text{self}) (\text{other})$の行列積を計算します。
+$(\text{self}) (\text{other})$ の行列積を計算します。
 
 **制約**
 - $\text{self}.W = \text{other}.H$
@@ -97,7 +99,7 @@ $(\text{self}) (\text{other})$の行列積を計算します。
 public void modAsg(final int mod)
 ```
 
-全ての要素の`mod`を取ります。
+全ての要素の `mod` を取ります。
 
 **制約**
 - $0 < \text{mod}$
@@ -111,15 +113,15 @@ public void modAsg(final int mod)
 public Matrix mulMod(final Matrix other, final int mod)
 public Matrix mulMod(final Matrix other, final ModIntFactory factory)
 ```
-$(\text{self}) (\text{other})$の行列積の`mod`で割った余りを求めます。
+$(\text{self}) (\text{other})$ の行列積の `mod` で割った余りを求めます。
 
-⚠️ self,otherの各要素はmodが取られている前提です。`modAsg`メソッドで予めmodを取っておいてください。
+⚠️ $\text{self},\text{other}$ の各要素は mod が取られている前提です。 `modAsg` メソッドで予め mod を取っておいてください。
 
-`ModIntFactory`を使うこともできます。
+`ModIntFactory` を使うこともできます。
 
 **制約**
 - $\text{self}.H = \text{other}.W$
-- $0 \leq \text{self}_{i,j}, \text{other}_{i,j} < \text{MOD}$
+- $0 \leq \text{self}_ {i,j}, \text{other}_ {i,j} < \text{MOD}$
 
 **計算量**
 - $O(\text{self}.H \times \text{other}.W \times \text{self}.W)$
@@ -144,11 +146,11 @@ public Matrix powMod(long n, final int mod)
 public Matrix powMod(long n, final ModIntFactory mod)
 ```
 
-正方行列の累乗をmodで割った余りを求めます。
+正方行列の累乗を `mod` で割った余りを求めます。
 
-⚠️ 各要素はmodが取られている前提です。`modAsg`メソッドで予めmodを取っておいてください。
+⚠️ 各要素は mod が取られている前提です。 `modAsg` メソッドで予め mod を取っておいてください。
 
-`ModIntFactory`を使うこともできます。
+`ModIntFactory` を使うこともできます。
 
 **制約**
 - $H = W$

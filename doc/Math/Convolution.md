@@ -2,12 +2,12 @@
 
 - - -
 
-NTTで剰余Convolutionを計算するクラスです。内部でModIntを使用しているメソッドが1個あるので、
-それを削除するか、使用する場合はModIntも貼り付けてください。
+NTT で剰余 convolution を計算するクラスです。内部で `ModInt` を使用しているメソッドが $1$ 個あるので、
+それを削除するか、使用する場合は `ModInt` も貼り付けてください。
 
 ## 使い方
 
-1. staticな `Convolution.convolute` を呼び出します.
+static な `Convolution.convolute` を呼び出します。
 
 ```java
 public static void main(String[] args) {
@@ -29,12 +29,13 @@ public static void main(String[] args) {
 public static long[] convolution(long[] a, long[] b, int mod) 
 ```
 
-リストまたは配列 `a` と `b` の剰余convolutionを計算します.
-計算量: $O(n ¥log(n))$
+リストまたは配列 `a` と `b` の剰余 convolution を計算します。
 
-制約
-- `mod` NTT用素数(998244353, 1053818881, 1004535809, ...)
+**制約**
+* `mod` は NTT 用素数( $998244353, 1053818881, 1004535809, \dots$ )
 
+**計算量**
+* $n =$ `a.length` $+$ `b.length` としたとき、 $O(n \log n + \log mod)$
 
 ### convolution (Any mod)
 
@@ -46,8 +47,10 @@ public static java.util.List<ModIntFactory.ModInt> convolution(
 )
 ```
 
-リストまたは配列 `a` と `b` の剰余convolutionを計算します.
-計算量: $O(n ¥log(n))$
+リストまたは配列 `a` と `b` の剰余 convolution を計算します。
 
-制約
-- `mod` 任意のmod
+**制約**
+* `mod` は任意の正整数
+
+**計算量**
+* $n =$ `a.length` $+$ `b.length` としたとき、 $O(n \log n + \log mod)$
