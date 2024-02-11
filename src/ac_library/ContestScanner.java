@@ -1,13 +1,14 @@
 package ac_library;
-public class ContestScanner {
+public final class ContestScanner {
     private final java.io.InputStream in;
-    private final byte[] buffer = new byte[1<<14];
+    private final byte[] buffer;
     private final static long MUL_LIMIT = -Long.MIN_VALUE/10;
     private int ptr = 0;
     private int buflen = 0;
 
-    public ContestScanner(java.io.InputStream in){
+    public ContestScanner(java.io.InputStream in) {
         this.in = in;
+        this.buffer = new byte[1<<14];
     }
     public ContestScanner(java.io.File file) throws java.io.FileNotFoundException {
         this(new java.io.FileInputStream(file));
@@ -99,7 +100,7 @@ public class ContestScanner {
  
     public final long[] nextLongArray(int length){
         long[] array = new long[length];
-        for(int i=0; i<length; i++) array[i] = this.nextLong();
+        for(int i=0; i<length; ++i) array[i] = this.nextLong();
         return array;
     }
     public final long[] nextLongArray1(int length) {
@@ -109,12 +110,12 @@ public class ContestScanner {
     }
     public final long[] nextLongArray(int length, java.util.function.LongUnaryOperator map){
         long[] array = new long[length];
-        for(int i=0; i<length; i++) array[i] = map.applyAsLong(this.nextLong());
+        for(int i=0; i<length; ++i) array[i] = map.applyAsLong(this.nextLong());
         return array;
     }
     public final int[] nextIntArray(int length){
         int[] array = new int[length];
-        for(int i=0; i<length; i++) array[i] = this.nextInt();
+        for(int i=0; i<length; ++i) array[i] = this.nextInt();
         return array;
     }
     public final int[] nextIntArray1(int length) {
@@ -124,17 +125,17 @@ public class ContestScanner {
     }
     public final int[] nextIntArray(int length, java.util.function.IntUnaryOperator map){
         int[] array = new int[length];
-        for(int i=0; i<length; i++) array[i] = map.applyAsInt(this.nextInt());
+        for(int i=0; i<length; ++i) array[i] = map.applyAsInt(this.nextInt());
         return array;
     }
     public final double[] nextDoubleArray(int length){
         double[] array = new double[length];
-        for(int i=0; i<length; i++) array[i] = this.nextDouble();
+        for(int i=0; i<length; ++i) array[i] = this.nextDouble();
         return array;
     }
     public final double[] nextDoubleArray(int length, java.util.function.DoubleUnaryOperator map){
         double[] array = new double[length];
-        for(int i=0; i<length; i++) array[i] = map.applyAsDouble(this.nextDouble());
+        for(int i=0; i<length; ++i) array[i] = map.applyAsDouble(this.nextDouble());
         return array;
     }
  

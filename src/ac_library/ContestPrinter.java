@@ -1,5 +1,5 @@
 package ac_library;
-public class ContestPrinter implements AutoCloseable {
+public final class ContestPrinter implements AutoCloseable {
     private final java.io.OutputStream out;
     private final int buflen = 1<<18;
     private int pos = 0;
@@ -56,7 +56,7 @@ public class ContestPrinter implements AutoCloseable {
         sb.append((long)x);
         sb.append(".");
         x -= (long)x;
-        for(int i = 0;i < n;i++){
+        for(int i = 0;i < n;++i){
             x *= 10;
             sb.append((int)x);
             x -= (int)x;
@@ -112,16 +112,16 @@ public class ContestPrinter implements AutoCloseable {
         this.write(s.getBytes());
     }
     public final void print(boolean x) {
-        this.print(""+x);
+        this.print(String.valueOf(x));
     }
     public final void print(char x) {
-        this.print(""+x);
+        this.print(String.valueOf(x));
     }
     public final void print(byte x) {
-        this.print(""+x);;
+        this.print(String.valueOf(x));;
     }
     public final void print(short x) {
-        this.print(""+x);
+        this.print(String.valueOf(x));
     }
     public final void print(int x) {
         this.writeAsAsciiBytes(x);
@@ -204,7 +204,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(array[i]);
             this.print(separator);
         }
@@ -219,7 +219,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(map.applyAsInt(array[i]));
             this.print(separator);
         }
@@ -235,7 +235,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(array[i]);
             this.print(separator);
         }
@@ -250,7 +250,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(map.applyAsLong(array[i]));
             this.print(separator);
         }
@@ -265,7 +265,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(array[i].toString());
             this.print(separator);
         }
@@ -280,7 +280,7 @@ public class ContestPrinter implements AutoCloseable {
             this.println();
             return;
         }
-        for(int i=0; i<n-1; i++){
+        for(int i=0; i<n-1; ++i){
             this.print(map.apply(array[i]).toString());
             this.print(separator);
         }
