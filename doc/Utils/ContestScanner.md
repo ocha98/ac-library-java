@@ -8,7 +8,7 @@
 
 ```java
 public ContestScanner(java.io.InputStream in) // (1)
-public ContestScanner(java.io.File file,) // (2)
+public ContestScanner(java.io.File file) // (2)
 public ContestScanner() // (3)
 ```
 指定された入力ストリームから `ContestScanner` を構築します。
