@@ -5,6 +5,8 @@
 
 ⚠️注意⚠️：最後に `close()` か `flush()` を呼び出すことを忘れないでください。
 
+なお、コード中の `type` は任意の型を指します。
+
 ## コンストラクタ
 ```java
 public ContestPrinter(java.io.OutputStream out)
