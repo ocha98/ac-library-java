@@ -45,8 +45,8 @@ public class MathLib{
     }
 
     public static long pow_mod(long x, long n, int m){
-        assert n >= 0;
-        assert m >= 1;
+        AssertUtil.check(n >= 0);
+        AssertUtil.check(m >= 1);
         if(m == 1)return 0L;
         x = safe_mod(x, m);
         long ans = 1L;
@@ -59,7 +59,7 @@ public class MathLib{
     }
 
     public static long[] crt(long[] r, long[] m){
-        assert(r.length == m.length);
+        AssertUtil.check(r.length == m.length);
         int n = r.length;
 
         long r0=0, m0=1;

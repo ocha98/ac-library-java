@@ -18,11 +18,12 @@ public class FenwickTree{
     }
 
     public void set(int p, long x){
+        AssertUtil.check(0 <= p && p < _n);
         add(p, x - get(p));
     }
 
     public void add(int p, long x){
-        assert(0<=p && p<_n);
+        AssertUtil.check(0 <= p && p < _n);
         p++;
         while(p<=_n){
             data[p-1] += x;
@@ -30,11 +31,12 @@ public class FenwickTree{
         }
     }
     public long sum(int l, int r){
-        assert(0<=l && l<=r && r<=_n);
+        AssertUtil.check(0 <= l && l <= r && r <= _n);
         return sum(r)-sum(l);
     }
 
     public long get(int p){
+        AssertUtil.check(0 <= p && p < _n);
         return sum(p, p+1);
     }
 
