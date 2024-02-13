@@ -44,14 +44,14 @@ public class Matrix {
     }
 
     public long get(int i, int j) {
-        assert 0 <= i && i < height;
-        assert 0 <= j && j < width;
+        AssertUtil.check(0 <= i && i < height);
+        AssertUtil.check(0 <= j && j < width);
         return data[i * width + j];
     }
 
     public void set(int i, int j, long val) {
-        assert 0 <= i && i < height;
-        assert 0 <= j && j < width;
+        AssertUtil.check(0 <= i && i < height);
+        AssertUtil.check(0 <= j && j < width);
         data[i * width + j] = val;
     }
 
@@ -66,7 +66,7 @@ public class Matrix {
     }
 
     public void modAsg(final int mod) {
-        assert 0 < mod;
+        AssertUtil.check(0 < mod);
         final int n = height*width;
         for(int i = 0;i < n; ++i){
             data[i] %= mod;
@@ -77,7 +77,7 @@ public class Matrix {
     }
 
     public Matrix mul(final Matrix other) {
-        if(width != other.height) throw new RuntimeException("invalid shape");
+        AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
         for(int i = 0;i < height; ++i){
             for(int k = 0;k < width; ++k){
@@ -92,7 +92,7 @@ public class Matrix {
     
     // !注意!：自身とotherはmodが取られている前提
     public Matrix mulMod(final Matrix other, final int mod) {
-        if(width != other.height) throw new RuntimeException("invalid shape");
+        AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
         for(int i = 0;i < height; ++i){
             for(int k = 0;k < width; ++k){
@@ -110,7 +110,7 @@ public class Matrix {
 
     // !注意!：自身とotherはmodが取られている前提
     public Matrix mulMod(final Matrix other, final ModIntFactory factory) {
-        if(width != other.height) throw new RuntimeException("invalid shape");
+        AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
         final long MOD = factory.getMod();
         for(int i = 0;i < height; ++i){
@@ -129,7 +129,7 @@ public class Matrix {
     }
 
     public Matrix pow(long n) {
-        if(height != width) throw new RuntimeException("invalid shape");
+        AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
         for(int i = 0;i < height; ++i){
             ret.data[i * width + i] = 1;
@@ -145,7 +145,7 @@ public class Matrix {
 
     // !注意!：自身はmodが取られている前提
     public Matrix powMod(long n, final int mod) {
-        if(height != width) throw new RuntimeException("invalid shape");
+        AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
         for(int i = 0;i < height; ++i){
             ret.data[i * width + i] = 1;
@@ -161,7 +161,7 @@ public class Matrix {
 
     // !注意!：自身はmodが取られている前提
     public Matrix powMod(long n, final ModIntFactory mod) {
-        if(height != width) throw new RuntimeException("invalid shape");
+        AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
         for(int i = 0;i < height; ++i){
             ret.data[i * width + i] = 1;
