@@ -41,7 +41,6 @@ public class FenwickTree{
     }
 
     private long sum(int r){
-        AssertUtil.check(0 <= r && r <= _n);
         long s = 0;
         while(r>0){
             s += data[r-1];
