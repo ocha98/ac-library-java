@@ -7,7 +7,7 @@
 public LCA(int n)
 ```
 
-指定された頂点数 $n$ の木を扱うLCAのインスタンスを生成します。
+指定された頂点数 $n$ の木を扱う `LCA` のインスタンスを生成します。
 
 ## メソッド
 ### addEdge
@@ -27,7 +27,7 @@ public void addEdge(int u, int v)
 public void build()
 ```
 
-LCAを構築します。 
+`LCA` を構築します。 
 
 **計算量**
 - $O( n \log{n} )$
@@ -38,7 +38,7 @@ public int getLCA(int u, int v)
 ```
 頂点 $u, v$ の最小共通先祖を返します。
 
-⚠️注意⚠️：このメソッドを呼び出す前に `build`を呼び出す必要があります。
+⚠️注意⚠️：このメソッドを呼び出す前に `build` を呼び出す必要があります。
 
 **制約**
 - $0 \leq u, v < n$
@@ -52,9 +52,9 @@ public int getLCA(int u, int v)
 public int dist(int u, int v)
 ```
 
-2 頂点間の距離を求めます。
+２頂点間の距離を求めます。
 
-⚠️注意⚠️：このメソッドを呼び出す前に `build`を呼び出す必要があります。
+⚠️注意⚠️：このメソッドを呼び出す前に `build` を呼び出す必要があります。
 
 
 **制約**

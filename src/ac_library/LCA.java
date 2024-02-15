@@ -52,7 +52,7 @@ public final class LCA {
         }
 
         SparseTable() {
-            final int m = 2*n; // n is parent class n (Number of vertex).
+            final int m = n<<1; // n is parent class n (Number of vertex).
             table = new int[log2(m)+1][m];
 
             System.arraycopy(eular_tour, 0, table[0], 0, m);
@@ -80,7 +80,7 @@ public final class LCA {
     public LCA(int n) {
         this.n = n;
         this.es = new java.util.ArrayList<>();
-        this.eular_tour = new int[2*n];
+        this.eular_tour = new int[n<<1];
         this.depth = new int[n];
         this.first = new int[n];
         java.util.Arrays.fill(depth, INF);
@@ -142,6 +142,6 @@ public final class LCA {
     public int dist(int u, int v) {
         AssertUtil.check(0 <= u && u < n && 0 <= v && v < n);
         final int lca = this.getLCA(u, v);
-        return depth[v] + depth[u] - 2*depth[lca];
+        return depth[v] + depth[u] - (depth[lca]<<1);
     }
 }

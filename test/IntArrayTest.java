@@ -76,7 +76,7 @@ public class IntArrayTest {
         array.push(20);
         array.push(30);
         
-        IntArray copy = array.copy();
+        IntArray copy = array.clone();
         assertEquals(array.size(), copy.size());
         
         for (int i = 0; i < array.size(); i++) {

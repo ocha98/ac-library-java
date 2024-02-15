@@ -1,21 +1,19 @@
 package ac_library;
 
 public final class IntArray {
-    private int size = 0;
-    private int capacity = 0;
+    private int size;
+    private int capacity;
     private int[] data;
     
     public IntArray(int size) {
-        if(size <= 0)throw new RuntimeException("size must be greater than 0");
+        if(size < 0)throw new IllegalArgumentException("size must be non-negative.");
         this.size = size;
-        capacity = size;
+        capacity = Math.max(size, 1);
         data = new int[capacity];
     }
 
     public IntArray() {
-        size = 0;
-        capacity = 1;
-        data = new int[capacity];
+        this(0);
     }
 
     public int size() {
@@ -60,7 +58,8 @@ public final class IntArray {
         return size == 0;
     }
 
-    public IntArray copy() {
+    @Override
+    public IntArray clone() {
         IntArray array = new IntArray();
         array.size = this.size;
         array.capacity = this.capacity;
