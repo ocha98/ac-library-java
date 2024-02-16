@@ -2,13 +2,13 @@ package ac_library;
 
 public class Matrix {
     private final long[] data;
-    private final int height,  width;
+    private final int height, width;
 
     public Matrix(int h, int w, long e) {
         data = new long[h * w];
         height = h;
         width = w;
-        if(e == 0) return;
+        if (e == 0) return;
         java.util.Arrays.fill(data, e);
     }
 
@@ -30,8 +30,8 @@ public class Matrix {
         height = h;
         width = w;
         data = new long[h * w];
-        for(int i = 0;i < h; ++i){
-            System.arraycopy(a[i], 0, data, i*w, w);
+        for (int i = 0; i < h; ++i) {
+            System.arraycopy(a[i], 0, data, i * w, w);
         }
     }
 
@@ -67,10 +67,10 @@ public class Matrix {
 
     public void modAsg(final int mod) {
         AssertUtil.check(0 < mod);
-        final int n = height*width;
-        for(int i = 0;i < n; ++i){
+        final int n = height * width;
+        for (int i = 0; i < n; ++i) {
             data[i] %= mod;
-            if(data[i] < 0){
+            if (data[i] < 0) {
                 data[i] += mod;
             }
         }
@@ -79,27 +79,27 @@ public class Matrix {
     public Matrix mul(final Matrix other) {
         AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
-        for(int i = 0;i < height; ++i){
-            for(int k = 0;k < width; ++k){
+        for (int i = 0; i < height; ++i) {
+            for (int k = 0; k < width; ++k) {
                 final long self_ik = data[i * width + k];
-                for(int j = 0;j < other.width; ++j){
+                for (int j = 0; j < other.width; ++j) {
                     ret.data[i * ret.width + j] += self_ik * other.data[k * other.width + j];
                 }
             }
         }
         return ret;
     }
-    
+
     // !注意!：自身とotherはmodが取られている前提
     public Matrix mulMod(final Matrix other, final int mod) {
         AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
-        for(int i = 0;i < height; ++i){
-            for(int k = 0;k < width; ++k){
+        for (int i = 0; i < height; ++i) {
+            for (int k = 0; k < width; ++k) {
                 final long self_ik = data[i * width + k];
-                for(int j = 0;j < other.width; ++j){
+                for (int j = 0; j < other.width; ++j) {
                     ret.data[i * ret.width + j] += self_ik * other.data[k * other.width + j] % mod;
-                    if(ret.data[i * ret.width + j] >= mod) {
+                    if (ret.data[i * ret.width + j] >= mod) {
                         ret.data[i * ret.width + j] -= mod;
                     }
                 }
@@ -113,13 +113,13 @@ public class Matrix {
         AssertUtil.check(width == other.height);
         Matrix ret = new Matrix(height, other.width);
         final long MOD = factory.getMod();
-        for(int i = 0;i < height; ++i){
-            for(int k = 0;k < width; ++k){
+        for (int i = 0; i < height; ++i) {
+            for (int k = 0; k < width; ++k) {
                 final ModIntFactory.ModInt self_ik = factory.raw(data[i * width + k]);
-                for(int j = 0;j < other.width; ++j){
+                for (int j = 0; j < other.width; ++j) {
                     final ModIntFactory.ModInt other_kj = factory.raw(other.data[k * other.width + j]);
                     ret.data[i * ret.width + j] += self_ik.mul(other_kj).value();
-                    if(ret.data[i * ret.width + j] >= MOD) {
+                    if (ret.data[i * ret.width + j] >= MOD) {
                         ret.data[i * ret.width + j] -= MOD;
                     }
                 }
@@ -131,12 +131,12 @@ public class Matrix {
     public Matrix pow(long n) {
         AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
-        for(int i = 0;i < height; ++i){
+        for (int i = 0; i < height; ++i) {
             ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
-        while(n > 0){
-            if((n & 1) == 1) ret = ret.mul(a);
+        while (n > 0) {
+            if ((n & 1) == 1) ret = ret.mul(a);
             a = a.mul(a);
             n >>= 1;
         }
@@ -147,12 +147,12 @@ public class Matrix {
     public Matrix powMod(long n, final int mod) {
         AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
-        for(int i = 0;i < height; ++i){
+        for (int i = 0; i < height; ++i) {
             ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
-        while(n > 0){
-            if((n & 1) == 1) ret = ret.mulMod(a, mod);
+        while (n > 0) {
+            if ((n & 1) == 1) ret = ret.mulMod(a, mod);
             a = a.mulMod(a, mod);
             n >>= 1;
         }
@@ -163,16 +163,15 @@ public class Matrix {
     public Matrix powMod(long n, final ModIntFactory mod) {
         AssertUtil.check(height == width);
         Matrix ret = new Matrix(height);
-        for(int i = 0;i < height; ++i){
+        for (int i = 0; i < height; ++i) {
             ret.data[i * width + i] = 1;
         }
         Matrix a = copy();
-        while(n > 0){
-            if((n & 1) == 1) ret = ret.mulMod(a, mod);
+        while (n > 0) {
+            if ((n & 1) == 1) ret = ret.mulMod(a, mod);
             a = a.mulMod(a, mod);
             n >>= 1;
         }
         return ret;
     }
 }
-

@@ -44,6 +44,20 @@
     <testSourceDirectory>${basedir}/test</testSourceDirectory>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.43.0</version>
+          <configuration>
+            <java>
+              <palantirJavaFormat>
+                <version>2.39.0</version>                     <!-- optional -->
+                <style>PALANTIR</style>                       <!-- or AOSP/GOOGLE (optional) -->
+                <formatJavadoc>false</formatJavadoc>          <!-- defaults to false (optional, requires at least Palantir 2.39.0) -->
+              </palantirJavaFormat>
+            </java>
+          </configuration>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

@@ -6,8 +6,10 @@ public class SCC {
 
     static class Edge {
         int from, to;
+
         public Edge(int from, int to) {
-            this.from = from; this.to = to;
+            this.from = from;
+            this.to = to;
         }
     }
 
@@ -35,14 +37,12 @@ public class SCC {
 
     public int id(int i) {
         if (!hasBuilt) {
-            throw new UnsupportedOperationException(
-                "Graph hasn't been built."
-            );
+            throw new UnsupportedOperationException("Graph hasn't been built.");
         }
         rangeCheck(i);
         return ids[i];
     }
-    
+
     public int[][] build() {
         for (int i = 1; i <= n; i++) {
             start[i] += start[i - 1];
@@ -97,7 +97,7 @@ public class SCC {
                         low[u] = Math.min(low[u], ord[to]);
                     }
                 } else { // no more children (leaving)
-                    while (j --> 0) {
+                    while (j-- > 0) {
                         int to = orderedEdges[start[u] + j].to;
                         // update lowlink
                         if (par[to] == u) low[u] = Math.min(low[u], low[to]);
@@ -117,7 +117,7 @@ public class SCC {
         for (int i = 0; i < n; i++) {
             ids[i] = groupNum - 1 - ids[i];
         }
-        
+
         int[] counts = new int[groupNum];
         for (int x : ids) counts[x]++;
         int[][] groups = new int[groupNum][];
@@ -134,9 +134,7 @@ public class SCC {
 
     private void rangeCheck(int i) {
         if (i < 0 || i >= n) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for length %d", i, n)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, n));
         }
     }
 }

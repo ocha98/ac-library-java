@@ -1,15 +1,29 @@
 package ac_library;
+
 public class MaxFlow {
     private static final class InternalCapEdge {
         final int to;
         final int rev;
         long cap;
-        InternalCapEdge(int to, int rev, long cap) { this.to = to; this.rev = rev; this.cap = cap; }
+
+        InternalCapEdge(int to, int rev, long cap) {
+            this.to = to;
+            this.rev = rev;
+            this.cap = cap;
+        }
     }
+
     public static final class CapEdge {
         public final int from, to;
         public final long cap, flow;
-        public CapEdge(int from, int to, long cap, long flow) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; }
+
+        public CapEdge(int from, int to, long cap, long flow) {
+            this.from = from;
+            this.to = to;
+            this.cap = cap;
+            this.flow = flow;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (o instanceof CapEdge) {
@@ -19,9 +33,14 @@ public class MaxFlow {
             return false;
         }
     }
+
     private static final class IntPair {
         final int first, second;
-        IntPair(int first, int second) { this.first = first; this.second = second; }
+
+        IntPair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
     }
 
     public static final long INF = Long.MAX_VALUE;
@@ -82,8 +101,7 @@ public class MaxFlow {
         nonNegativeCheck(newCap, "Capacity");
         if (newFlow > newCap) {
             throw new IllegalArgumentException(
-                String.format("Flow %d is greater than the capacity %d.", newCap, newFlow)
-            );
+                    String.format("Flow %d is greater than the capacity %d.", newCap, newFlow));
         }
         InternalCapEdge e = getInternalEdge(i);
         InternalCapEdge re = getInternalEdgeReversed(e);
@@ -173,17 +191,13 @@ public class MaxFlow {
 
     private void rangeCheck(int i, int minInclusive, int maxExclusive) {
         if (i < 0 || i >= maxExclusive) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for length %d", i, maxExclusive)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, maxExclusive));
         }
     }
 
     private void nonNegativeCheck(long cap, String attribute) {
         if (cap < 0) {
-            throw new IllegalArgumentException(
-                String.format("%s %d is negative.", attribute, cap)
-            );
+            throw new IllegalArgumentException(String.format("%s %d is negative.", attribute, cap));
         }
     }
 }

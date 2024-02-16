@@ -1,45 +1,46 @@
 package ac_library;
-public class Bridge{
-	private static int time;
-	private static int[] disc, low;
-	private static boolean[] visited;
 
-	public static boolean[] bridges(int[][][] graphWithEdgeInfo){
-		int edgeCount = 0;
-		for(int[][] row:graphWithEdgeInfo)edgeCount += row.length;
-		return bridges(graphWithEdgeInfo, edgeCount/2);
-	}
+public class Bridge {
+    private static int time;
+    private static int[] disc, low;
+    private static boolean[] visited;
 
-	public static boolean[] bridges(int[][][] graphWithEdgeInfo, int edgeCount){
-		int NumberOfNodes = graphWithEdgeInfo.length;
+    public static boolean[] bridges(int[][][] graphWithEdgeInfo) {
+        int edgeCount = 0;
+        for (int[][] row : graphWithEdgeInfo) edgeCount += row.length;
+        return bridges(graphWithEdgeInfo, edgeCount / 2);
+    }
 
-		time = -1;
-		disc = new int[NumberOfNodes];
-		low = new int[NumberOfNodes];
-		visited = new boolean[NumberOfNodes];
-		java.util.Arrays.fill(low, 2*NumberOfNodes);
+    public static boolean[] bridges(int[][][] graphWithEdgeInfo, int edgeCount) {
+        int NumberOfNodes = graphWithEdgeInfo.length;
 
-		boolean[] isBridge = new boolean[edgeCount];
-		for(int i = 0; i< NumberOfNodes; i++)if(!visited[i] && graphWithEdgeInfo[i] != null)bridgeUtil(graphWithEdgeInfo, isBridge, i, -1);
-		return isBridge;
-	}
+        time = -1;
+        disc = new int[NumberOfNodes];
+        low = new int[NumberOfNodes];
+        visited = new boolean[NumberOfNodes];
+        java.util.Arrays.fill(low, 2 * NumberOfNodes);
 
-	private static void bridgeUtil(int[][][] g, boolean[] isBridge, int u, int parentEdge){
-		visited[u] = true;
-		disc[u] = low[u] = ++time;
+        boolean[] isBridge = new boolean[edgeCount];
+        for (int i = 0; i < NumberOfNodes; i++)
+            if (!visited[i] && graphWithEdgeInfo[i] != null) bridgeUtil(graphWithEdgeInfo, isBridge, i, -1);
+        return isBridge;
+    }
 
-		for(int[] edge: g[u]){
-			int v = edge[0], edgeIndex = edge[1];
-			if(parentEdge == edgeIndex)continue;
+    private static void bridgeUtil(int[][][] g, boolean[] isBridge, int u, int parentEdge) {
+        visited[u] = true;
+        disc[u] = low[u] = ++time;
 
-			if(visited[v])
-				low[u] = Math.min(low[u], disc[v]);
-			else{
-				bridgeUtil(g, isBridge, v, edgeIndex);
-				low[u] = Math.min(low[u], low[v]);
+        for (int[] edge : g[u]) {
+            int v = edge[0], edgeIndex = edge[1];
+            if (parentEdge == edgeIndex) continue;
 
-				if(low[v] > disc[u])isBridge[edgeIndex] = true;
-			}
-		}
-	}
+            if (visited[v]) low[u] = Math.min(low[u], disc[v]);
+            else {
+                bridgeUtil(g, isBridge, v, edgeIndex);
+                low[u] = Math.min(low[u], low[v]);
+
+                if (low[v] > disc[u]) isBridge[edgeIndex] = true;
+            }
+        }
+    }
 }

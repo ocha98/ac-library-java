@@ -1,11 +1,9 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-
-import org.junit.Test;
-
 import ac_library.MaxFlow;
+import java.util.Arrays;
+import org.junit.Test;
 
 /**
  * From: https://github.com/atcoder/ac-library/blob/1ca9100261b8c27cf62acccc3618c5e8375bf57b/test/unittest/maxflow_test.cpp
@@ -33,7 +31,7 @@ public class MaxFlowTest {
         e = new MaxFlow.CapEdge(1, 2, 1, 0);
         assertEquals(e, g.getEdge(4));
 
-        assertTrue(Arrays.equals(new boolean[]{true, false, false, false}, g.minCut(0)));
+        assertTrue(Arrays.equals(new boolean[] {true, false, false, false}, g.minCut(0)));
     }
 
     @Test
@@ -47,7 +45,7 @@ public class MaxFlowTest {
         assertEquals(5, g.addEdge(0, 0, 6));
         assertEquals(6, g.addEdge(1, 1, 7));
         assertEquals(15, g.maxFlow(0, 1));
-    
+
         MaxFlow.CapEdge e;
         e = new MaxFlow.CapEdge(0, 1, 1, 1);
         assertEquals(e, g.getEdge(0));
@@ -59,8 +57,8 @@ public class MaxFlowTest {
         assertEquals(e, g.getEdge(3));
         e = new MaxFlow.CapEdge(0, 1, 5, 5);
         assertEquals(e, g.getEdge(4));
-    
-        assertTrue(Arrays.equals(new boolean[]{true, false}, g.minCut(0)));
+
+        assertTrue(Arrays.equals(new boolean[] {true, false}, g.minCut(0)));
     }
 
     @Test
@@ -76,7 +74,7 @@ public class MaxFlowTest {
         e = new MaxFlow.CapEdge(1, 2, 1, 1);
         assertEquals(e, g.getEdge(1));
 
-        assertTrue(Arrays.equals(new boolean[]{true, true, false}, g.minCut(0)));
+        assertTrue(Arrays.equals(new boolean[] {true, true, false}, g.minCut(0)));
     }
 
     @Test
@@ -87,32 +85,32 @@ public class MaxFlowTest {
         assertEquals(0, g.addEdge(0, 1, 1));
         assertEquals(1, g.addEdge(0, 2, 1));
         assertEquals(2, g.addEdge(1, 2, 1));
-        
+
         assertEquals(2, g.maxFlow(0, 2));
-    
+
         e = new MaxFlow.CapEdge(0, 1, 1, 1);
         assertEquals(e, g.getEdge(0));
         e = new MaxFlow.CapEdge(0, 2, 1, 1);
         assertEquals(e, g.getEdge(1));
         e = new MaxFlow.CapEdge(1, 2, 1, 1);
         assertEquals(e, g.getEdge(2));
-    
+
         g.changeEdge(0, 100, 10);
         e = new MaxFlow.CapEdge(0, 1, 100, 10);
         assertEquals(e, g.getEdge(0));
-    
+
         assertEquals(0, g.maxFlow(0, 2));
         assertEquals(90, g.maxFlow(0, 1));
-    
+
         e = new MaxFlow.CapEdge(0, 1, 100, 100);
         assertEquals(e, g.getEdge(0));
         e = new MaxFlow.CapEdge(0, 2, 1, 1);
         assertEquals(e, g.getEdge(1));
         e = new MaxFlow.CapEdge(1, 2, 1, 1);
         assertEquals(e, g.getEdge(2));
-    
+
         assertEquals(2, g.maxFlow(2, 0));
-    
+
         e = new MaxFlow.CapEdge(0, 1, 100, 99);
         assertEquals(e, g.getEdge(0));
         e = new MaxFlow.CapEdge(0, 2, 1, 0);

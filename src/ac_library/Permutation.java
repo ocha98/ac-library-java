@@ -1,8 +1,8 @@
 package ac_library;
 /*
-* Verified
-* https://atcoder.jp/contests/abc054/submissions/16977824
-*/
+ * Verified
+ * https://atcoder.jp/contests/abc054/submissions/16977824
+ */
 public class Permutation implements java.util.Iterator<int[]>, Iterable<int[]> {
     private int[] next;
 
@@ -28,24 +28,20 @@ public class Permutation implements java.util.Iterator<int[]>, Iterable<int[]> {
     }
 
     public static int[] nextPermutation(int[] a) {
-        if (a == null || a.length < 2)
-            return null;
+        if (a == null || a.length < 2) return null;
         int p = 0;
         for (int i = a.length - 2; i >= 0; i--) {
-            if (a[i] >= a[i + 1])
-                continue;
+            if (a[i] >= a[i + 1]) continue;
             p = i;
             break;
         }
         int q = 0;
         for (int i = a.length - 1; i > p; i--) {
-            if (a[i] <= a[p])
-                continue;
+            if (a[i] <= a[p]) continue;
             q = i;
             break;
         }
-        if (p == 0 && q == 0)
-            return null;
+        if (p == 0 && q == 0) return null;
         int temp = a[p];
         a[p] = a[q];
         a[q] = temp;

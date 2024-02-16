@@ -1,14 +1,14 @@
 package ac_library;
 
-final public class AssertUtil {
+public final class AssertUtil {
     // if flag is false, throw AssertionError
     public static void check(boolean flag) {
         check(flag, "Check failed. flag is false.");
     }
-    
+
     // if flag is false, throw AssertionError with err_msg
     public static void check(boolean flag, String err_msg) {
-        if(!flag) {
+        if (!flag) {
             throw new AssertionError(err_msg);
         }
     }

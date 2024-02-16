@@ -53,19 +53,19 @@ public class SegTree<S> {
 
     public S prod(int l, int r) {
         if (l > r) {
-            throw new IllegalArgumentException(
-                String.format("Invalid range: [%d, %d)", l, r)
-            );
+            throw new IllegalArgumentException(String.format("Invalid range: [%d, %d)", l, r));
         }
         inclusiveRangeCheck(l);
         inclusiveRangeCheck(r);
         S sumLeft = E;
         S sumRight = E;
-        l += N; r += N;
+        l += N;
+        r += N;
         while (l < r) {
             if ((l & 1) == 1) sumLeft = op.apply(sumLeft, data[l++]);
             if ((r & 1) == 1) sumRight = op.apply(data[--r], sumRight);
-            l >>= 1; r >>= 1;
+            l >>= 1;
+            r >>= 1;
         }
         return op.apply(sumLeft, sumRight);
     }
@@ -129,16 +129,14 @@ public class SegTree<S> {
     private void exclusiveRangeCheck(int p) {
         if (p < 0 || p >= MAX) {
             throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for the range [%d, %d).", p, 0, MAX)
-            );
+                    String.format("Index %d out of bounds for the range [%d, %d).", p, 0, MAX));
         }
     }
 
     private void inclusiveRangeCheck(int p) {
         if (p < 0 || p > MAX) {
             throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for the range [%d, %d].", p, 0, MAX)
-            );
+                    String.format("Index %d out of bounds for the range [%d, %d].", p, 0, MAX));
         }
     }
 
@@ -172,7 +170,7 @@ public class SegTree<S> {
 
     private static String indent(int n) {
         StringBuilder sb = new StringBuilder();
-        while (n --> 0) sb.append(' ');
+        while (n-- > 0) sb.append(' ');
         return sb.toString();
     }
 
