@@ -109,7 +109,7 @@ public class Convolution {
         public final long[] irate2;
         public final long[] rate3;
         public final long[] irate3;
-    
+
         public FftInfo(int g, int mod) {
             rank2 = bsfConstexpr(mod - 1);
             root = new long[rank2 + 1];
@@ -118,14 +118,14 @@ public class Convolution {
             irate2 = new long[Math.max(0, rank2 - 2 + 1)];
             rate3 = new long[Math.max(0, rank2 - 3 + 1)];
             irate3 = new long[Math.max(0, rank2 - 3 + 1)];
-            
+
             root[rank2] = pow(g, (mod - 1) >> rank2, mod);
             iroot[rank2] = inv(root[rank2], mod);
             for (int i = rank2 - 1; i >= 0; i--) {
                 root[i] = root[i + 1] * root[i + 1] % mod;
                 iroot[i] = iroot[i + 1] * iroot[i + 1] % mod;
             }
-    
+
             {
                 long prod = 1, iprod = 1;
                 for (int i = 0; i <= rank2 - 2; i++) {
@@ -145,7 +145,8 @@ public class Convolution {
                 }
             }
         }
-    };
+    }
+    ;
 
     /**
      * Garner's algorithm.
@@ -186,7 +187,7 @@ public class Convolution {
 
         FftInfo info = new FftInfo(g, mod);
 
-        int len = h;  // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
+        int len = h; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
         while (len > 0) {
             if (len == 1) {
                 int p = 1 << (h - len);
@@ -218,7 +219,7 @@ public class Convolution {
                         long a1 = 1L * a[i + offset + 1 * p];
                         long a2 = 1L * a[i + offset + 2 * p];
                         long a3 = 1L * a[i + offset + 3 * p];
-    
+
                         long a2na3iimag = 1L * (mod + a2 - a3) % mod * iimag % mod;
 
                         a[i + offset] = (a0 + a1 + a2 + a3) % mod;
@@ -249,7 +250,7 @@ public class Convolution {
 
         FftInfo info = new FftInfo(g, mod);
 
-        int len = 0;  // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
+        int len = 0; // a[i, i+(n>>len), i+2*(n>>len), ..] is transformed
         while (len < h) {
             if (h - len == 1) {
                 int p = 1 << (h - len - 1);
@@ -362,7 +363,7 @@ public class Convolution {
         long[] ret = new long[retSize];
         int[] mods = {mod1, mod2, mod3, mod};
         for (int i = 0; i < retSize; ++i) {
-            ret[i] = garner(new long[]{c1[i], c2[i], c3[i]}, mods);
+            ret[i] = garner(new long[] {c1[i], c2[i], c3[i]}, mods);
         }
         return ret;
     }
@@ -375,9 +376,7 @@ public class Convolution {
      * @return Answer.
      */
     public static java.util.List<ModIntFactory.ModInt> convolution(
-            java.util.List<ModIntFactory.ModInt> a,
-            java.util.List<ModIntFactory.ModInt> b
-    ) {
+            java.util.List<ModIntFactory.ModInt> a, java.util.List<ModIntFactory.ModInt> b) {
         int mod = a.get(0).mod();
         long[] va = a.stream().mapToLong(ModIntFactory.ModInt::value).toArray();
         long[] vb = b.stream().mapToLong(ModIntFactory.ModInt::value).toArray();

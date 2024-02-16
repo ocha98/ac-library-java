@@ -1,10 +1,8 @@
+import ac_library.ContestPrinter;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.junit.Assert;
 import org.junit.Test;
-
-import ac_library.ContestPrinter;
 
 public class ContestPrinterTest {
     // methods test
@@ -13,15 +11,15 @@ public class ContestPrinterTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.print((byte)1);
-        cp.print((byte)-1);
+        cp.print((byte) 1);
+        cp.print((byte) -1);
         cp.print('1');
-        cp.print((short)1);
-        cp.print((short)-1);
-        cp.print((int)1);
-        cp.print((int)-1);
-        cp.print((long)1);
-        cp.print((long)-1);
+        cp.print((short) 1);
+        cp.print((short) -1);
+        cp.print((int) 1);
+        cp.print((int) -1);
+        cp.print((long) 1);
+        cp.print((long) -1);
         cp.print(true);
         cp.print(false);
         cp.print("abcd");
@@ -29,20 +27,21 @@ public class ContestPrinterTest {
         Assert.assertEquals("1-111-11-11-1truefalseabcd", out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printlnTestExFloat() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.println((byte)1);
-        cp.println((byte)-1);
+        cp.println((byte) 1);
+        cp.println((byte) -1);
         cp.println('1');
-        cp.println((short)1);
-        cp.println((short)-1);
-        cp.println((int)1);
-        cp.println((int)-1);
-        cp.println((long)1);
-        cp.println((long)-1);
+        cp.println((short) 1);
+        cp.println((short) -1);
+        cp.println((int) 1);
+        cp.println((int) -1);
+        cp.println((long) 1);
+        cp.println((long) -1);
         cp.println(true);
         cp.println(false);
         cp.println("abcd");
@@ -50,6 +49,7 @@ public class ContestPrinterTest {
         Assert.assertEquals("1\n-1\n1\n1\n-1\n1\n-1\n1\n-1\ntrue\nfalse\nabcd\n", out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void doublePrintTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -62,6 +62,7 @@ public class ContestPrinterTest {
         Assert.assertEquals(Double.parseDouble(s), 123.456, 1e-9);
         System.setOut(System.out);
     }
+
     @Test
     public void doublePrintlnTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -75,6 +76,7 @@ public class ContestPrinterTest {
         Assert.assertEquals(Double.parseDouble(s), 123.456, 1e-9);
         System.setOut(System.out);
     }
+
     @Test
     public void floatPrintTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -87,6 +89,7 @@ public class ContestPrinterTest {
         Assert.assertEquals(Float.parseFloat(s), 123.456f, 1e-9);
         System.setOut(System.out);
     }
+
     @Test
     public void floatPrintlnTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -100,42 +103,46 @@ public class ContestPrinterTest {
         Assert.assertEquals(Float.parseFloat(s), 123.456f, 1e-9);
         System.setOut(System.out);
     }
+
     @Test
     public void printlnArrayTestInt() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new int[]{1, 2, 3}, "$");
+        cp.printlnArray(new int[] {1, 2, 3}, "$");
         cp.flush();
         Assert.assertEquals("1$2$3\n", out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printlnArrayTest2Int() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new int[]{1, 2, 3});
+        cp.printlnArray(new int[] {1, 2, 3});
         cp.flush();
         Assert.assertEquals("1 2 3\n", out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printlnArrayTestLong() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new long[]{1, 2, 3}, "$");
+        cp.printlnArray(new long[] {1, 2, 3}, "$");
         cp.flush();
         Assert.assertEquals("1$2$3\n", out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printlnArrayTest2Long() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
-        cp.printlnArray(new long[]{1, 2, 3});
+        cp.printlnArray(new long[] {1, 2, 3});
         cp.flush();
         Assert.assertEquals("1 2 3\n", out.toString());
         System.setOut(System.out);
@@ -148,7 +155,7 @@ public class ContestPrinterTest {
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
         StringBuilder builder = new StringBuilder();
-        for(int i = -1000000; i <= 1000000; i++){
+        for (int i = -1000000; i <= 1000000; i++) {
             cp.print(i);
             builder.append(i);
         }
@@ -156,13 +163,14 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printNumberTestNearLongMax() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
         StringBuilder builder = new StringBuilder();
-        for(long i = Long.MAX_VALUE - 10; i < Long.MAX_VALUE; i++){
+        for (long i = Long.MAX_VALUE - 10; i < Long.MAX_VALUE; i++) {
             cp.print(i);
             builder.append(i);
         }
@@ -172,13 +180,14 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printNumberTestNearLongMin() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
         StringBuilder builder = new StringBuilder();
-        for(long i = Long.MIN_VALUE; i < Long.MIN_VALUE + 10; i++){
+        for (long i = Long.MIN_VALUE; i < Long.MIN_VALUE + 10; i++) {
             cp.print(i);
             builder.append(i);
         }
@@ -188,13 +197,14 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printnumberTestNearIntMax() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
         StringBuilder builder = new StringBuilder();
-        for(int i = Integer.MAX_VALUE - 10; i < Integer.MAX_VALUE; i++){
+        for (int i = Integer.MAX_VALUE - 10; i < Integer.MAX_VALUE; i++) {
             cp.print(i);
             builder.append(i);
         }
@@ -204,13 +214,14 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printNumberTestNearIntMin() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         ContestPrinter cp = new ContestPrinter();
         StringBuilder builder = new StringBuilder();
-        for(int i = Integer.MIN_VALUE; i < Integer.MIN_VALUE + 10; i++){
+        for (int i = Integer.MIN_VALUE; i < Integer.MIN_VALUE + 10; i++) {
             cp.print(i);
             builder.append(i);
         }
@@ -220,10 +231,11 @@ public class ContestPrinterTest {
         Assert.assertEquals(builder.toString(), out.toString());
         System.setOut(System.out);
     }
+
     @Test
     public void printDoubleRangeTest() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        for(double i = -100.123;i <= 100.123;i += 0.123){
+        for (double i = -100.123; i <= 100.123; i += 0.123) {
             System.setOut(new PrintStream(out));
             ContestPrinter cp = new ContestPrinter();
             cp.println(i);
@@ -232,6 +244,5 @@ public class ContestPrinterTest {
             out.reset();
             System.setOut(System.out);
         }
-
     }
 }

@@ -30,10 +30,10 @@ public class TwoSAT {
     public void addNand(int x, boolean f, int y, boolean g) {
         addClause(x, !f, y, !g);
     }
-    public void set(int x, boolean f){
+
+    public void set(int x, boolean f) {
         addClause(x, f, x, f);
     }
-
 
     public boolean satisfiable() {
         hasCalledSatisfiable = true;
@@ -47,9 +47,7 @@ public class TwoSAT {
 
     public boolean[] answer() {
         if (!hasCalledSatisfiable) {
-            throw new UnsupportedOperationException(
-                "Call TwoSAT#satisfiable at least once before TwoSAT#answer."
-            );
+            throw new UnsupportedOperationException("Call TwoSAT#satisfiable at least once before TwoSAT#answer.");
         }
         if (existsAnswer) return answer;
         return null;
@@ -57,20 +55,23 @@ public class TwoSAT {
 
     private void rangeCheck(int x) {
         if (x < 0 || x >= n) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for length %d", x, n)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", x, n));
         }
     }
 
     private static final class EdgeList {
         long[] a;
         int ptr = 0;
-        EdgeList(int cap) {a = new long[cap];}
+
+        EdgeList(int cap) {
+            a = new long[cap];
+        }
+
         void add(int upper, int lower) {
             if (ptr == a.length) grow();
             a[ptr++] = (long) upper << 32 | lower;
         }
+
         void grow() {
             long[] b = new long[a.length << 1];
             System.arraycopy(a, 0, b, 0, a.length);
@@ -83,17 +84,21 @@ public class TwoSAT {
         int m;
         final EdgeList unorderedEdges;
         final int[] start;
+
         InternalSCC(int n) {
             this.n = n;
             this.unorderedEdges = new EdgeList(n);
             this.start = new int[n + 1];
         }
+
         void addEdge(int from, int to) {
             unorderedEdges.add(from, to);
             start[from + 1]++;
             this.m++;
         }
+
         static final long mask = 0xffff_ffffl;
+
         int[] ids() {
             for (int i = 1; i <= n; i++) {
                 start[i] += start[i - 1];
@@ -116,7 +121,7 @@ public class TwoSAT {
             int[] ids = new int[n];
             long[] stack = new long[n];
             int ptr = 0;
-            
+
             for (int i = 0; i < n; i++) {
                 if (ord[i] >= 0) continue;
                 par[i] = -1;
@@ -139,7 +144,7 @@ public class TwoSAT {
                             low[u] = Math.min(low[u], ord[to]);
                         }
                     } else {
-                        while (j --> 0) {
+                        while (j-- > 0) {
                             int to = orderedEdges[start[u] + j];
                             if (par[to] == u) low[u] = Math.min(low[u], low[to]);
                         }

@@ -1,10 +1,9 @@
 package ac_library;
 /**
  * TODO: verify {@link LazySegTree#maxRight} and {@link LazySegTree#minLeft}
- * 
+ *
  * @verified https://atcoder.jp/contests/practice2/tasks/practice2_k
  */
-
 public class LazySegTree<S, F> {
     final int MAX;
 
@@ -20,7 +19,13 @@ public class LazySegTree<S, F> {
     final F[] Laz;
 
     @SuppressWarnings("unchecked")
-    public LazySegTree(int n, java.util.function.BinaryOperator<S> op, S e, java.util.function.BiFunction<F, S, S> mapping, java.util.function.BinaryOperator<F> composition, F id) {
+    public LazySegTree(
+            int n,
+            java.util.function.BinaryOperator<S> op,
+            S e,
+            java.util.function.BiFunction<F, S, S> mapping,
+            java.util.function.BinaryOperator<F> composition,
+            F id) {
         this.MAX = n;
         int k = 1;
         while (k < n) k <<= 1;
@@ -37,7 +42,13 @@ public class LazySegTree<S, F> {
         java.util.Arrays.fill(Laz, Id);
     }
 
-    public LazySegTree(S[] dat, java.util.function.BinaryOperator<S> op, S e, java.util.function.BiFunction<F, S, S> mapping, java.util.function.BinaryOperator<F> composition, F id) {
+    public LazySegTree(
+            S[] dat,
+            java.util.function.BinaryOperator<S> op,
+            S e,
+            java.util.function.BiFunction<F, S, S> mapping,
+            java.util.function.BinaryOperator<F> composition,
+            F id) {
         this(dat.length, op, e, mapping, composition, id);
         build(dat);
     }
@@ -109,20 +120,20 @@ public class LazySegTree<S, F> {
 
     public S prod(int l, int r) {
         if (l > r) {
-            throw new IllegalArgumentException(
-                String.format("Invalid range: [%d, %d)", l, r)
-            );
+            throw new IllegalArgumentException(String.format("Invalid range: [%d, %d)", l, r));
         }
         inclusiveRangeCheck(l);
         inclusiveRangeCheck(r);
         if (l == r) return E;
-        l += N; r += N;
+        l += N;
+        r += N;
         pushTo(l, r);
         S sumLeft = E, sumRight = E;
         while (l < r) {
             if ((l & 1) == 1) sumLeft = Op.apply(sumLeft, Dat[l++]);
             if ((r & 1) == 1) sumRight = Op.apply(Dat[--r], sumRight);
-            l >>= 1; r >>= 1;
+            l >>= 1;
+            r >>= 1;
         }
         return Op.apply(sumLeft, sumRight);
     }
@@ -141,16 +152,15 @@ public class LazySegTree<S, F> {
 
     public void apply(int l, int r, F f) {
         if (l > r) {
-            throw new IllegalArgumentException(
-                String.format("Invalid range: [%d, %d)", l, r)
-            );
+            throw new IllegalArgumentException(String.format("Invalid range: [%d, %d)", l, r));
         }
         inclusiveRangeCheck(l);
         inclusiveRangeCheck(r);
         if (l == r) return;
-        l += N; r += N;
+        l += N;
+        r += N;
         pushTo(l, r);
-        for (int l2 = l, r2 = r; l2 < r2;) {
+        for (int l2 = l, r2 = r; l2 < r2; ) {
             if ((l2 & 1) == 1) {
                 Dat[l2] = Mapping.apply(f, Dat[l2]);
                 if (l2 < N) Laz[l2] = Composition.apply(f, Laz[l2]);
@@ -161,7 +171,8 @@ public class LazySegTree<S, F> {
                 Dat[r2] = Mapping.apply(f, Dat[r2]);
                 if (r2 < N) Laz[r2] = Composition.apply(f, Laz[r2]);
             }
-            l2 >>= 1; r2 >>= 1;
+            l2 >>= 1;
+            r2 >>= 1;
         }
         updateFrom(l, r);
     }
@@ -224,17 +235,13 @@ public class LazySegTree<S, F> {
 
     private void exclusiveRangeCheck(int p) {
         if (p < 0 || p >= MAX) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d is not in [%d, %d).", p, 0, MAX)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d is not in [%d, %d).", p, 0, MAX));
         }
     }
 
     private void inclusiveRangeCheck(int p) {
         if (p < 0 || p > MAX) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d is not in [%d, %d].", p, 0, MAX)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d is not in [%d, %d].", p, 0, MAX));
         }
     }
 
@@ -283,7 +290,7 @@ public class LazySegTree<S, F> {
 
     private static String indent(int n) {
         StringBuilder sb = new StringBuilder();
-        while (n --> 0) sb.append(' ');
+        while (n-- > 0) sb.append(' ');
         return sb.toString();
     }
 

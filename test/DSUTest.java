@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 import ac_library.DSU;
+import org.junit.Test;
 
 public class DSUTest {
     @Test
@@ -14,6 +14,6 @@ public class DSUTest {
         assertTrue(dsu.same(1, 2));
         assertTrue(dsu.same(0, 2));
 
-        assertTrue(dsu.size(0)== 3);
+        assertTrue(dsu.size(0) == 3);
     }
 }

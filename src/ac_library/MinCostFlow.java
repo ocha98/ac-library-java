@@ -9,13 +9,27 @@ public class MinCostFlow {
         final int to, rev;
         long cap;
         final long cost;
-        InternalWeightedCapEdge(int to, int rev, long cap, long cost) { this.to = to; this.rev = rev; this.cap = cap; this.cost = cost; }
+
+        InternalWeightedCapEdge(int to, int rev, long cap, long cost) {
+            this.to = to;
+            this.rev = rev;
+            this.cap = cap;
+            this.cost = cost;
+        }
     }
 
     public static final class WeightedCapEdge {
         public final int from, to;
         public final long cap, flow, cost;
-        public WeightedCapEdge(int from, int to, long cap, long flow, long cost) { this.from = from; this.to = to; this.cap = cap; this.flow = flow; this.cost = cost; }
+
+        public WeightedCapEdge(int from, int to, long cap, long flow, long cost) {
+            this.from = from;
+            this.to = to;
+            this.cap = cap;
+            this.flow = flow;
+            this.cost = cost;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (o instanceof WeightedCapEdge) {
@@ -28,12 +42,21 @@ public class MinCostFlow {
 
     private static final class IntPair {
         final int first, second;
-        IntPair(int first, int second) { this.first = first; this.second = second; }
+
+        IntPair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
     }
 
     public static final class FlowAndCost {
         public final long flow, cost;
-        public FlowAndCost(long flow, long cost) { this.flow = flow; this.cost = cost; }
+
+        public FlowAndCost(long flow, long cost) {
+            this.flow = flow;
+            this.cost = cost;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (o instanceof FlowAndCost) {
@@ -82,7 +105,7 @@ public class MinCostFlow {
     private InternalWeightedCapEdge getInternalEdgeReversed(InternalWeightedCapEdge e) {
         return g[e.to].get(e.rev);
     }
-    
+
     public WeightedCapEdge getEdge(int i) {
         int m = pos.size();
         rangeCheck(i, 0, m);
@@ -100,9 +123,11 @@ public class MinCostFlow {
     public FlowAndCost minCostMaxFlow(int s, int t) {
         return minCostFlow(s, t, INF);
     }
+
     public FlowAndCost minCostFlow(int s, int t, long flowLimit) {
         return minCostSlope(s, t, flowLimit).getLast();
     }
+
     public java.util.LinkedList<FlowAndCost> minCostSlope(int s, int t) {
         return minCostSlope(s, t, INF);
     }
@@ -111,9 +136,7 @@ public class MinCostFlow {
         rangeCheck(s, 0, n);
         rangeCheck(t, 0, n);
         if (s == t) {
-            throw new IllegalArgumentException(
-                String.format("%d and %d is the same vertex.", s, t)
-            );
+            throw new IllegalArgumentException(String.format("%d and %d is the same vertex.", s, t));
         }
         long[] dual = new long[n];
         long[] dist = new long[n];
@@ -155,11 +178,17 @@ public class MinCostFlow {
         class State implements Comparable<State> {
             final long key;
             final int to;
-            State(long key, int to) { this.key = key; this.to = to; }
+
+            State(long key, int to) {
+                this.key = key;
+                this.to = to;
+            }
+
             public int compareTo(State q) {
                 return key > q.key ? 1 : -1;
             }
-        };
+        }
+        ;
         java.util.PriorityQueue<State> pq = new java.util.PriorityQueue<>();
         dist[s] = 0;
         pq.add(new State(0L, s));
@@ -193,17 +222,13 @@ public class MinCostFlow {
 
     private void rangeCheck(int i, int minInlusive, int maxExclusive) {
         if (i < 0 || i >= maxExclusive) {
-            throw new IndexOutOfBoundsException(
-                String.format("Index %d out of bounds for length %d", i, maxExclusive)
-            );
+            throw new IndexOutOfBoundsException(String.format("Index %d out of bounds for length %d", i, maxExclusive));
         }
     }
 
     private void nonNegativeCheck(long cap, java.lang.String attribute) {
         if (cap < 0) {
-            throw new IllegalArgumentException(
-                String.format("%s %d is negative.", attribute, cap)
-            );
+            throw new IllegalArgumentException(String.format("%s %d is negative.", attribute, cap));
         }
     }
 }
