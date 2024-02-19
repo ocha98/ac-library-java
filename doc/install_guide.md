@@ -1,26 +1,27 @@
 # AC Library Java 導入方法
 
-## 導入方法
-GitHub のリポジトリをクローンするか、[リリースページ](https://github.com/ocha98/ac-library-java/releases)からソースをダウンロードしてください。
+## 使い方
+### jar の入手
+1. [リリースページ](https://github.com/ocha98/ac-library-java/releases)から jar をダウンロードします。ファイル名は `ac_library<java_release>.jar` です。ジャッジ等のバージョンに合ったものを選択してください。
+2. 適合するバージョンが見つからない場合は、ソースコードが含まれている `ac_library.zip` をダウンロードし `builder.sh` を使用し `ac_library.jar` を生成してください。
 
-ディレクトリ内にある `builder.sh` を実行し、 `ac_library.jar` を作成してください。
-
-Windows などでスクリプトが実行できない場合は、 `bulder.sh` の中に書いてあるコマンドを手動で実行してください。
-
-`src/bin` 内にある `ac_library.jar` をお好きな場所に保存してください。
-
-コンパイル時は、 `-cp` で `ac_library.jar` のパスを指定し `javac` を実行してください。
-
-`<path_to_ac_library.jar>` は適宜置き換えてください。
+`builder.sh` で以下のようにリリースのバージョンを指定し `ac_library.jar` を生成します。
 
 ```bash
-javac -cp <path_to_ac_library.jar>/ac_library.jar Main.java
+$ ./builder.sh <java_release>
 ```
 
-実行時も同様に指定してください。 `ac_library.jar` の後ろに `:` がついていることに注意してください。
+### コンパイルと実行
+jar ファイルと一緒に以下のようにコンパイルしてください。
 
-```bash
-java -cp <path_to_ac_library.jar>/ac_library.jar: Main
+```
+javac -cp <path_to>/ac_library.jar Main.java
+```
+
+実行時は以下のように実行してください。
+
+```
+java -cp <path_to>/ac_library.jar: Main
 ```
 
 ## VSCode

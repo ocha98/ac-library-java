@@ -1,8 +1,14 @@
 #!/bin/bash
 
-set -e
+if [ -z "$1" ]; then
+    echo "Usage: $0 <java_release>"
+    exit 1
+fi
 
-cd src/ac_library
-javac -d ../bin *.java
-cd ../bin
-jar cf ac_library.jar *
+source_directory="src/ac_library"
+
+java_files=$(find "$source_directory" -name "*.java")
+
+javac --release "$1" -d out $java_files
+jar cf ac_library.jar -C out .
+rm -rf out
