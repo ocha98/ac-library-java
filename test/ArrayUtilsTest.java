@@ -55,47 +55,47 @@ public class ArrayUtilsTest {
     public void lowerBoundTestLong() {
         long[] a = {0, 1, 2, 3, 4, 5, 6};
         for(int i = 0;i < 7; ++i){
-            assertEquals(i, ArrayUtils.lowerBound(a, i));
+            assertEquals(i, ArrayUtils.lowerBound(a, (long)i));
         }
-        assertEquals(0, ArrayUtils.lowerBound(a, -1));
-        assertEquals(a.length, ArrayUtils.lowerBound(a, 7));
+        assertEquals(0, ArrayUtils.lowerBound(a, -1L));
+        assertEquals(a.length, ArrayUtils.lowerBound(a, 7L));
 
         a = new long[]{0, 1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 6, 7, 7};
         int[] expected = {0, 1, 3, 6, 7, 10, 11, 12};
         for(int i = 0;i < 8; ++i){
             assertEquals(expected[i], ArrayUtils.lowerBound(a, i));
         }
-        assertEquals(0, ArrayUtils.lowerBound(a, -1));
-        assertEquals(a.length, ArrayUtils.lowerBound(a, 8));
+        assertEquals(0, ArrayUtils.lowerBound(a, -1L));
+        assertEquals(a.length, ArrayUtils.lowerBound(a, 8L));
 
 
         a = new long[]{0, 0, 0, 0, 0, 0, 0};
-        assertEquals(0, ArrayUtils.lowerBound(a, 0));
-        assertEquals(a.length, ArrayUtils.lowerBound(a, 1));
+        assertEquals(0, ArrayUtils.lowerBound(a, 0L));
+        assertEquals(a.length, ArrayUtils.lowerBound(a, 1L));
 
         a = new long[]{0, 0, 0, 0, 0, 0, 1, 1};
-        assertEquals(0, ArrayUtils.lowerBound(a, 0));
-        assertEquals(6, ArrayUtils.lowerBound(a, 1));
+        assertEquals(0, ArrayUtils.lowerBound(a, 0L));
+        assertEquals(6, ArrayUtils.lowerBound(a, 1L));
 
         a = new long[]{-3, -2, -1, 0, 1, 2, 3};
         for(int i = -3;i <= 3; ++i){
             assertEquals(i + 3, ArrayUtils.lowerBound(a, i));
         }
-        assertEquals(0, ArrayUtils.lowerBound(a, -4));
-        assertEquals(a.length, ArrayUtils.lowerBound(a, 4));
+        assertEquals(0, ArrayUtils.lowerBound(a, -4L));
+        assertEquals(a.length, ArrayUtils.lowerBound(a, 4L));
 
         a = new long[]{1, 2};
-        assertEquals(0, ArrayUtils.lowerBound(a, 0));
-        assertEquals(0, ArrayUtils.lowerBound(a, 1));
-        assertEquals(1, ArrayUtils.lowerBound(a, 2));
-        assertEquals(2, ArrayUtils.lowerBound(a, 3));
+        assertEquals(0, ArrayUtils.lowerBound(a, 0L));
+        assertEquals(0, ArrayUtils.lowerBound(a, 1L));
+        assertEquals(1, ArrayUtils.lowerBound(a, 2L));
+        assertEquals(2, ArrayUtils.lowerBound(a, 3L));
 
         a = new long[]{1};
-        assertEquals(0, ArrayUtils.lowerBound(a, 1));
-        assertEquals(1, ArrayUtils.lowerBound(a, 2));
+        assertEquals(0, ArrayUtils.lowerBound(a, 1L));
+        assertEquals(1, ArrayUtils.lowerBound(a, 2L));
 
         a = new long[]{};
-        assertEquals(0, ArrayUtils.lowerBound(a, 1));
+        assertEquals(0, ArrayUtils.lowerBound(a, 1L));
     }
 
     @Test
@@ -150,48 +150,48 @@ public class ArrayUtilsTest {
     public void upperBoundTestLong() {
         long[] a = {0, 1, 2, 3, 4, 5, 6};
         for(int i = 0;i < 7; ++i){
-            assertEquals(i + 1, ArrayUtils.upperBound(a, i));
+            assertEquals(i + 1, ArrayUtils.upperBound(a, (long)i));
         }
-        assertEquals(0, ArrayUtils.upperBound(a, -1));
-        assertEquals(a.length, ArrayUtils.upperBound(a, 7));
+        assertEquals(0, ArrayUtils.upperBound(a, -1L));
+        assertEquals(a.length, ArrayUtils.upperBound(a, 7L));
 
         a = new long[]{0, 1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 6, 7, 7};
         int[] expected = {1, 3, 6, 7, 10, 11, 12, 14};
         for(int i = 0;i < 8; ++i){
-            assertEquals(expected[i], ArrayUtils.upperBound(a, i));
+            assertEquals(expected[i], ArrayUtils.upperBound(a, (long)i));
         }
-        assertEquals(0, ArrayUtils.upperBound(a, -1));
+        assertEquals(0, ArrayUtils.upperBound(a, -1L));
 
         a = new long[]{0, 0, 0, 0, 0, 0, 0};
-        assertEquals(0, ArrayUtils.upperBound(a, -1));
-        assertEquals(a.length, ArrayUtils.upperBound(a, 0));
-        assertEquals(a.length, ArrayUtils.upperBound(a, 1));
+        assertEquals(0, ArrayUtils.upperBound(a, -1L));
+        assertEquals(a.length, ArrayUtils.upperBound(a, 0L));
+        assertEquals(a.length, ArrayUtils.upperBound(a, 1L));
 
         a = new long[]{0, 0, 0, 0, 0, 0, 1, 1};
-        assertEquals(0, ArrayUtils.upperBound(a, -1));
-        assertEquals(6, ArrayUtils.upperBound(a, 0));
-        assertEquals(a.length, ArrayUtils.upperBound(a, 1));
+        assertEquals(0, ArrayUtils.upperBound(a, -1L));
+        assertEquals(6, ArrayUtils.upperBound(a, 0L));
+        assertEquals(a.length, ArrayUtils.upperBound(a, 1L));
 
         a = new long[]{-3, -2, -1, 0, 1, 2, 3};
         for(int i = -3;i <= 3; ++i){
-            assertEquals(i + 3 + 1, ArrayUtils.upperBound(a, i));
+            assertEquals(i + 3 + 1, ArrayUtils.upperBound(a, (long)i));
         }
-        assertEquals(0, ArrayUtils.upperBound(a, -4));
-        assertEquals(a.length, ArrayUtils.upperBound(a, 4));
+        assertEquals(0, ArrayUtils.upperBound(a, -4L));
+        assertEquals(a.length, ArrayUtils.upperBound(a, 4L));
 
         a = new long[]{1, 2};
-        assertEquals(0, ArrayUtils.upperBound(a, 0));
-        assertEquals(1, ArrayUtils.upperBound(a, 1));
-        assertEquals(2, ArrayUtils.upperBound(a, 2));
-        assertEquals(2, ArrayUtils.upperBound(a, 3));
+        assertEquals(0, ArrayUtils.upperBound(a, 0L));
+        assertEquals(1, ArrayUtils.upperBound(a, 1L));
+        assertEquals(2, ArrayUtils.upperBound(a, 2L));
+        assertEquals(2, ArrayUtils.upperBound(a, 3L));
 
 
         a = new long[]{1};
-        assertEquals(0, ArrayUtils.upperBound(a, 0));
-        assertEquals(1, ArrayUtils.upperBound(a, 1));
+        assertEquals(0, ArrayUtils.upperBound(a, 0L));
+        assertEquals(1, ArrayUtils.upperBound(a, 1L));
 
         a = new long[]{};
-        assertEquals(0, ArrayUtils.upperBound(a, 1));
+        assertEquals(0, ArrayUtils.upperBound(a, 1L));
     }
 
     @Test
