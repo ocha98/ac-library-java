@@ -20,7 +20,7 @@ public static long lowerBound(long[] a, long x)
 ### upperBound
 ```java
 public static int upperBound(int[], int x)
-public static long upperBound(int[], int x)
+public static long upperBound(long[], long x)
 ```
 
 ソート済みの配列に対し $x$ より大きい値が現れる最初のインデックスを返します。

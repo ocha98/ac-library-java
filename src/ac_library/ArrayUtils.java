@@ -40,7 +40,7 @@ public final class ArrayUtils {
         return ok;
     }
 
-    public static int upperBound(long[] a, int x) {
+    public static int upperBound(long[] a, long x) {
         int ok = a.length, ng = -1;
         while (ok - ng > 1) {
             int mid = (ok+ng) >> 1;
