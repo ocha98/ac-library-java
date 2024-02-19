@@ -28,6 +28,9 @@ javac -cp <path_to>/ac_library.jar Main.java
 java -cp <path_to>/ac_library.jar: Main
 ```
 
+## embedder.py
+ライブラリを１つのソースファイルに埋め込むツールです。ジャッジにライブラリが導入されていなくても提出できるようになります。
+
 ## コントリビュートについて
 コントリビュートしたい場合は、以下のようにしてください：
 
