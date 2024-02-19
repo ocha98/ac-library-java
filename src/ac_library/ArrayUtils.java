@@ -55,10 +55,10 @@ public final class ArrayUtils {
 
     public static int[] dedup(int[] a) {
         int n = a.length;
-        if(n <= 1) return a.clone();
+        if (n <= 1) return a.clone();
 
         int cnt = 1;
-        for(int i = 1;i < n; ++i) {
+        for (int i = 1;i < n; ++i) {
             if (a[i-1] != a[i]) {
                 ++cnt;
             }
@@ -68,7 +68,7 @@ public final class ArrayUtils {
         b[0] = a[0];
         int pre = a[0];
         int dist = 1;
-        for(int i = 0;i < n; ++i) {
+        for (int i = 0;i < n; ++i) {
             if (a[i] != pre) {
                 b[dist] = a[i];
                 ++dist;
@@ -80,10 +80,10 @@ public final class ArrayUtils {
 
     public static long[] dedup(long[] a) {
         int n = a.length;
-        if(n <= 1) return a.clone();
+        if (n <= 1) return a.clone();
 
         int cnt = 1;
-        for(int i = 1;i < n; ++i) {
+        for (int i = 1;i < n; ++i) {
             if (a[i-1] != a[i]) {
                 ++cnt;
             }
@@ -93,7 +93,7 @@ public final class ArrayUtils {
         b[0] = a[0];
         long pre = a[0];
         int dist = 1;
-        for(int i = 0;i < n; ++i) {
+        for (int i = 0;i < n; ++i) {
             if (a[i] != pre) {
                 b[dist] = a[i];
                 ++dist;
