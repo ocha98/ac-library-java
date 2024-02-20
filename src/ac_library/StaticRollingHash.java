@@ -165,7 +165,7 @@ public class StaticRollingHash implements Comparable<StaticRollingHash> {
      * @return このStaticRollingHashの長さ
      */
     public int length() {
-        return (int) hash[string.length()];
+        return string.length();
     }
 
     /**
@@ -175,7 +175,7 @@ public class StaticRollingHash implements Comparable<StaticRollingHash> {
      */
     @Override
     public int hashCode() {
-        return string.hashCode();
+        return (int) hash[string.length()];
     }
 
     /**
