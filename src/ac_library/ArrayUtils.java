@@ -27,6 +27,32 @@ public final class ArrayUtils {
         return ok;
     }
 
+    public static int lowerBound(double[] a, double x) {
+        int ok = a.length, ng = -1;
+        while (ok - ng > 1) {
+            int mid = (ok+ng) >> 1;
+            if (a[mid] >= x) {
+                ok = mid;
+            } else {
+                ng = mid;
+            }
+        }
+        return ok;
+    }
+
+    public static <T extends Comparable<T>> int lowerBound(T[] a, T x) {
+        int ok = a.length, ng = -1;
+        while (ok - ng > 1) {
+            int mid = (ok+ng) >> 1;
+            if (a[mid].compareTo(x) >= 0) {
+                ok = mid;
+            } else {
+                ng = mid;
+            }
+        }
+        return ok;
+    }
+
     public static int upperBound(int[] a, int x) {
         int ok = a.length, ng = -1;
         while (ok - ng > 1) {
@@ -45,6 +71,32 @@ public final class ArrayUtils {
         while (ok - ng > 1) {
             int mid = (ok+ng) >> 1;
             if (a[mid] > x) {
+                ok = mid;
+            } else {
+                ng = mid;
+            }
+        }
+        return ok;
+    }
+
+    public static int upperBound(double[] a, double x) {
+        int ok = a.length, ng = -1;
+        while (ok - ng > 1) {
+            int mid = (ok+ng) >> 1;
+            if (a[mid] > x) {
+                ok = mid;
+            } else {
+                ng = mid;
+            }
+        }
+        return ok;
+    }
+
+    public static <T extends Comparable<T>> int upperBound(T[] a, T x) {
+        int ok = a.length, ng = -1;
+        while (ok - ng > 1) {
+            int mid = (ok+ng) >> 1;
+            if (a[mid].compareTo(x) > 0) {
                 ok = mid;
             } else {
                 ng = mid;

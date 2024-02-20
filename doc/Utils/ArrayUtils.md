@@ -7,7 +7,9 @@
 ### lowerBound
 ```java
 public static int lowerBound(int[] a, int x)
-public static long lowerBound(long[] a, long x)
+public static int lowerBound(long[] a, long x)
+public static int lowerBound(double[] a, double x)
+public static <T extends Comparable<T>> int lowerBound(T[] a, T x)
 ```
 
 ソート済みの配列に対し $x$ 以上の値が現れる最初のインデックスを返します。
@@ -20,7 +22,9 @@ public static long lowerBound(long[] a, long x)
 ### upperBound
 ```java
 public static int upperBound(int[], int x)
-public static long upperBound(long[], long x)
+public static int upperBound(long[], long x)
+public static int upperBound(double[] a, double x)
+public static <T extends Comparable<T>> int lowerBound(T[] a, T x)
 ```
 
 ソート済みの配列に対し $x$ より大きい値が現れる最初のインデックスを返します。
