@@ -118,13 +118,10 @@ public final class ArrayUtils {
 
         int[] b = new int[cnt];
         b[0] = a[0];
-        int pre = a[0];
         int dist = 1;
-        for (int i = 0;i < n; ++i) {
-            if (a[i] != pre) {
-                b[dist] = a[i];
-                ++dist;
-                pre = a[i];
+        for (int i = 1;i < n; ++i) {
+            if (a[i-1] != a[i]) {
+                b[dist++] = a[i];
             }
         }
         return b;
@@ -143,13 +140,10 @@ public final class ArrayUtils {
 
         long[] b = new long[cnt];
         b[0] = a[0];
-        long pre = a[0];
         int dist = 1;
-        for (int i = 0;i < n; ++i) {
-            if (a[i] != pre) {
-                b[dist] = a[i];
-                ++dist;
-                pre = a[i];
+        for (int i = 1;i < n; ++i) {
+            if (a[i-1] != a[i]) {
+                b[dist++] = a[i];
             }
         }
         return b;

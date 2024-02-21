@@ -24,7 +24,7 @@ public static <T extends Comparable<T>> int lowerBound(T[] a, T x)
 public static int upperBound(int[], int x)
 public static int upperBound(long[], long x)
 public static int upperBound(double[] a, double x)
-public static <T extends Comparable<T>> int lowerBound(T[] a, T x)
+public static <T extends Comparable<T>> int upperBound(T[] a, T x)
 ```
 
 ソート済みの配列に対し $x$ より大きい値が現れる最初のインデックスを返します。
