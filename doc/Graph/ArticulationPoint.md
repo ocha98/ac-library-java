@@ -1,20 +1,20 @@
-# Class ArticulationPoint
+# クラス ArticulationPoint
 - - -
 
-Given a graph generated using GraphBuilder.makeGraph(), this class finds all articulation points in graph. Since GraphBuilder assumes $0$ -based indexing, this class also works assuming $0$ -based indexing.
+`GraphBuilder.makeGraph()` によって生成されたグラフを与えると、このクラスは関節点を全て見つける。 `GraphBuilder.makeGraph()` は $0\text{index}$ を仮定しているのでこのクラスも $0\text{index}$ で動作する。
 
-All members of this class are static, so no constructor defined.
+全てのメンバーは static でコンストラクタは定義されていない。
 
-## Methods
+## メソッド
 
 ### articulationPoints
-```
+```java
 public static boolean[] articulationPoints(int[][] graph)
 ```
-Returns boolean array of length $n$ where $n$ denotes the number of nodes in given graph, $i$ -th element in this boolean array denotes whether $i$ -th node in given graph is an articulation point or not.
+$n$ を与えられたグラフの頂点数とした時、長さ $n$ の `boolean` 配列を返す。 $i$ 番目の要素は $i$ 番目の頂点が端点がどうかを示している。
 
-**Constraints**
-* graph is generated using GraphBuilder.makeGraph(), so all constraints applicable to makeGraph method applies.
+**制約**
+* `graph` は `GraphBuilder.makeGraph()`で生成されたものであり、`makeGraph` メソッドに適応されるすべての制約が適応される。
 
-**Computational complexity**
+**計算量**
 * $O(\mathrm{NumberOfNodes} + \mathrm{NumberOfEdges})$
