@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'katex/dist/katex.min.css'
 import type { AppProps } from 'next/app'
 import Link from 'next/link';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
 import '../styles/markdown.css'
 
 export default function App({ Component, pageProps }: AppProps) {
