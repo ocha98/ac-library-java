@@ -29,119 +29,119 @@ public final class GraphBuilder {
     }
 
     public void addEdge(final int u, final int v, final boolean undirect) {
-        AssertUtil.check(0 <= u && u < n && 0 <= v && v < n);
-        edge.add(new Edge(u, v, undirect));
-        ++start[u];
+        AssertUtil.check(0 <= u && u < this.n && 0 <= v && v < this.n);
+        this.edge.add(new GraphBuilder.Edge(u, v, undirect));
+        ++this.start[u];
         if (undirect) {
-            ++start[v];
+            ++this.start[v];
         }
     }
 
     public int[][][] build() {
-        hasBuilt = true;
-        obtainedArticulationPoints = false;
-        obtainedBridges = false;
-        for (int i = 0; i < n; ++i) {
-            graph[i] = new int[start[i]][];
+        this.hasBuilt = true;
+        this.obtainedArticulationPoints = false;
+        this.obtainedBridges = false;
+        for (int i = 0; i < this.n; ++i) {
+            this.graph[i] = new int[this.start[i]][];
         }
-        final int[] index = new int[n];
-        final int m = edge.size();
+        final int[] index = new int[this.n];
+        final int m = this.edge.size();
         for (int i = 0; i < m; ++i) {
-            final Edge e = edge.get(i);
-            graph[e.from][index[e.from]++] = new int[]{e.to, i};
+            final GraphBuilder.Edge e = this.edge.get(i);
+            this.graph[e.from][index[e.from]++] = new int[]{e.to, i};
             if (e.isUndirect) {
-                graph[e.to][index[e.to]++] = new int[]{e.from, i};
+                this.graph[e.to][index[e.to]++] = new int[]{e.from, i};
             }
         }
-        return graph;
+        return this.graph;
     }
 
     public boolean[] articulationPoints() {
-        AssertUtil.check(hasBuilt, "build has not been called yet");
-        if (obtainedArticulationPoints) {
-            return isAP;
+        AssertUtil.check(this.hasBuilt, "build has not been called yet");
+        if (this.obtainedArticulationPoints) {
+            return this.isAP;
         }
         this.time = -1;
-        this.disc = new int[n];
-        this.low = new int[n];
-        this.visited = new boolean[n];
-        this.isAP = new boolean[n];
-        java.util.Arrays.fill(low, n<<1);
+        this.disc = new int[this.n];
+        this.low = new int[this.n];
+        this.visited = new boolean[this.n];
+        this.isAP = new boolean[this.n];
+        java.util.Arrays.fill(this.low, this.n<<1);
 
-        for (int i = 0; i < n; ++i) {
-            if (!visited[i]) {
-                apUtil(i, -1);
+        for (int i = 0; i < this.n; ++i) {
+            if (!this.visited[i]) {
+                this.apUtil(i, -1);
             }
         }
-        obtainedArticulationPoints = true;
-        return isAP;
+        this.obtainedArticulationPoints = true;
+        return this.isAP;
     }
 
     private void apUtil(final int u, final int p) {
-        visited[u] = true;
-        disc[u] = low[u] = ++time;
+        this.visited[u] = true;
+        this.disc[u] = this.low[u] = ++this.time;
 
         int childCount = 0;
-        for (final int[] e : graph[u]) {
+        for (final int[] e : this.graph[u]) {
             final int v = e[0];
-            if (!visited[v]) {
-                apUtil(v, u);
+            if (!this.visited[v]) {
+                this.apUtil(v, u);
 
-                low[u] = Math.min(low[u], low[v]);
+                this.low[u] = java.lang.Math.min(this.low[u], this.low[v]);
                 ++childCount;
 
-                if (p != -1 && low[v] >= disc[u]) {
-                    isAP[u] = true;
+                if (p != -1 && this.low[v] >= this.disc[u]) {
+                    this.isAP[u] = true;
                 }
             }
             else if (v != p) {
-                low[u] = Math.min(low[u], disc[v]);
+                this.low[u] = java.lang.Math.min(this.low[u], this.disc[v]);
             }
         }
         if (p == -1 && childCount > 1) {
-            isAP[u] = true;
+            this.isAP[u] = true;
         }
     }
     
     public boolean[] bridges() {
-        AssertUtil.check(hasBuilt, "build has not been called yet");
-        if (obtainedBridges) {
-            return isBridge;
+        AssertUtil.check(this.hasBuilt, "build has not been called yet");
+        if (this.obtainedBridges) {
+            return this.isBridge;
         }
         this.time = -1;
-        this.disc = new int[n];
-        this.low = new int[n];
-        this.visited = new boolean[n];
-        java.util.Arrays.fill(low, n<<1);
+        this.disc = new int[this.n];
+        this.low = new int[this.n];
+        this.visited = new boolean[this.n];
+        java.util.Arrays.fill(low, this.n<<1);
 
-        this.isBridge = new boolean[edge.size()];
-        for (int i = 0; i < n; ++i) {
-            if (!visited[i]) {
-                bridgeUtil(i, -1);
+        this.isBridge = new boolean[this.edge.size()];
+        for (int i = 0; i < this.n; ++i) {
+            if (!this.visited[i]) {
+                this.bridgeUtil(i, -1);
             }
         }
-        obtainedBridges = true;
-        return isBridge;
+        this.obtainedBridges = true;
+        return this.isBridge;
     }
 
     private void bridgeUtil(final int u, final int parentEdge) {
-        visited[u] = true;
-        disc[u] = low[u] = ++time;
+        this.visited[u] = true;
+        this.disc[u] = this.low[u] = ++this.time;
 
-        for (final int[] edge : graph[u]) {
+        for (final int[] edge : this.graph[u]) {
             final int v = edge[0];
             final int edgeIndex = edge[1];
             if (parentEdge == edgeIndex) {
                 continue;
             }
-            if (visited[v]) {
-                low[u] = Math.min(low[u], disc[v]);
+            if (this.visited[v]) {
+                this.low[u] = java.lang.Math.min(this.low[u], this.disc[v]);
             }
             else{
-                bridgeUtil(v, edgeIndex);
-                low[u] = Math.min(low[u], low[v]);
-                if (low[v] > disc[u]) {
-                    isBridge[edgeIndex] = true;
+                this.bridgeUtil(v, edgeIndex);
+                this.low[u] = java.lang.Math.min(this.low[u], this.low[v]);
+                if (this.low[v] > this.disc[u]) {
+                    this.isBridge[edgeIndex] = true;
                 }
             }
         }
