@@ -88,7 +88,7 @@ public final class GraphBuilder {
                 apUtil(v, u);
 
                 low[u] = Math.min(low[u], low[v]);
-                childCount++;
+                ++childCount;
 
                 if (p != -1 && low[v] >= disc[u]) {
                     isAP[u] = true;
