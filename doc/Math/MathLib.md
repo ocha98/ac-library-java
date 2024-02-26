@@ -24,7 +24,7 @@ public static long[] crt(long[] r, long[] m)
 public static long floor_sum(long n, long m, long a, long b)
 ```
 
-$$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$$ を返します。
+$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$ を返します。
 
 **制約**
 * $0 \leq n \leq 10^9$
@@ -37,14 +37,27 @@ $$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$$ を返します。
 ### gcd, lcm
 
 ```java
-public static long gcd(long a, long b)
-public static long lcm(long a, long b)
+public static long gcd(long... a)
+public static long lcm(long... a)
 ```
 $2$ 整数 $a, b$ の最大公約数、最小公倍数を返します。  
 返り値は必ず非負整数になります。
 
 **計算量**
 * $O(\log \min(a,b))$
+
+### pow_mod
+```java
+public static long pow_mod(long x, long n, int m)
+```
+$x^n \mod m$ を返します。
+
+**制約**
+* $0 \leq n$
+* $1 \leq m$
+
+**計算量**
+* $O(\log{n})$
 
 ### divisors
 ```java

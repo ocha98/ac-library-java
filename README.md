@@ -18,13 +18,13 @@ $ ./builder.sh <java_release>
 ### コンパイルと実行
 jar ファイルと一緒に以下のようにコンパイルしてください。
 
-```
+```bash
 javac -cp <path_to>/ac_library.jar Main.java
 ```
 
 実行時は以下のように実行してください。
 
-```
+```bash
 java -cp <path_to>/ac_library.jar: Main
 ```
 

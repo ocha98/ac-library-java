@@ -109,7 +109,7 @@ public void changeEdge(int i, long newCap, long newFlow)
 $i$ 番目に変更された辺の容量、流量を `newCap` 、 `newFlow` に変更します。他の辺の容量、流量は変更しません。
 
 **制約**
-* $0 \leq \mathrm{newFlow} \mathrm{newCap}$
+* $0 \leq \mathrm{newFlow}, \mathrm{newCap}$
 
 **計算量**
 * $O(1)$
