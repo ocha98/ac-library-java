@@ -1,41 +1,42 @@
-# Class GraphBuilder
+# クラス GraphBuilder
 - - -
 
-Creates graph in form of jagged arrays (as compared to Arraylist) for directed as well as undirected graphs from given set of edges in $0$ -indexing.
+与えられた $0\text{index}$ の辺集合から無向グラフ及び、有向グラフを隣接リスト形式のグラフを生成します。
 
-All members of this class are static, so no constructor defined.
+全てのメンバーは static でコンストラクターは定義されていません。
 
-## Methods
-
+## メソッド
 ### makeGraph
-```
+```java 
 public static int[][] makeGraph(int NumberOfNodes, int NumberOfEdges, int[] from, int[] to, boolean undirected)
 ```
-Returns the adjacency list representation of graph with specified Number of Nodes and Edges and the edges specified in from and to arrays in $0$ -based indexing. If undirected is set to true, the edges are deemed to be undirected, otherwise directed.
+指定された頂点数と `from` と `to` の配列から構成される $0\text{index}$ の隣接リストを返します。もし `undirected` が `true` の場合、辺は無向辺とみなされます。そうでなければ有向辺とされます。
 
-```graph[u]``` is the array of vertices having an edge outgoing from vertex $u$.
+`graph[u]` は頂点 $u$ から出る辺が繋ぐ頂点の集合です。
 
-**Constraints**
+**制約**
 * $0 \leq \mathrm{from}_i, \mathrm{to}_i < \mathrm{NumberOfNodes}$
 * $\mathrm{from.length} = \mathrm{to.length} = \mathrm{NumberOfEdges}$
 
-**Computational complexity**
+**計算量**
 * $O(\mathrm{NumberOfNodes} + \mathrm{NumberOfEdges})$
 
 ### makeGraphWithEdgeInfo
-```
+```java
 public static int[][][] makeGraphWithEdgeInfo(int NumberOfNodes, int NumberOfEdges, int[] from, int[] to, boolean undirected)
 ```
 
-Returns the adjacency list representation of graph with specified Number of Nodes and Edges and the edges specified in from and to arrays in $0$ -based indexing. If undirected is set to true, the edges are deemed to be undirected, otherwise directed. This method also returns useful information about edge index and edge direction.
+指定された頂点数と辺数のグラフの `from` 、 `to` で指定された辺を持つグラフを隣接リストを返します。 $0\text{index}$ です。 `undirected` が `true` の場合、辺は無向辺とみなされ、そうでなければ有向辺となります。また、このメソッドは辺の番号と方向を返します。
 
-```graph[u]``` is the array of tuples ```[v, idx, direction]``` where edge indexed ```idx``` is between node ```u``` and node ```v``` and direction takes value either $0$ or $1$.
-- If direction is $0$, edge indexed ```idx``` is from ```u``` to ```v```
-- If direction is $1$, edge indexed ```idx``` is from ```v``` to ```u```
 
-**Constraints**
+`graph[u]` は　`[v, idx, direction]` のタプルの配列であり、 `idx` 番目の辺は頂点 `u` と `v` を方向 $0$ または $1$ で結んでいます。
+
+- `direction` が $0$ の時、 `idx` 番目の辺は `u` から `v` に向かう
+- `direction` が $1$ の時、 `idx` 番目の辺は `v` から `u` に向かう
+
+**制約**
 * $0 \leq from_i, to_i < \mathrm{NumberOfNodes}$
 * $\mathrm{from.length} = \mathrm{to.length} = \mathrm{NumberOfEdges}$
 
-**Computational complexity**
+**計算量**
 * $O(\mathrm{NumberOfNodes} + \mathrm{NumberOfEdges})$
