@@ -24,7 +24,7 @@ public static long[] crt(long[] r, long[] m)
 public static long floor_sum(long n, long m, long a, long b)
 ```
 
-$$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$$ を返します。
+$\sum_{i=0}^{n-1} \mathrm{floor}(\frac{a \times i+b}{m})$ を返します。
 
 **制約**
 * $0 \leq n \leq 10^9$
