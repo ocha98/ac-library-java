@@ -1,6 +1,6 @@
 package ac_library;
 
-public final class GraphBuilder {
+public final class LowLink {
     private final int n;
     private final java.util.ArrayList<Edge> edge;
     private final int[][][] graph;
@@ -13,28 +13,24 @@ public final class GraphBuilder {
     private static final class Edge {
         private final int from;
         private final int to;
-        private final boolean isUndirect;
-        private Edge(final int from, final int to, final boolean isUndirect) {
+        private Edge(final int from, final int to) {
             this.from = from;
             this.to = to;
-            this.isUndirect = isUndirect;
         }
     }
 
-    public GraphBuilder(final int n) {
+    public LowLink(final int n) {
         this.n = n;
         this.edge = new java.util.ArrayList<>();
         this.graph = new int[n][][];
         this.start = new int[n];
     }
 
-    public void addEdge(final int u, final int v, final boolean undirect) {
+    public void addEdge(final int u, final int v) {
         AssertUtil.check(0 <= u && u < this.n && 0 <= v && v < this.n);
-        this.edge.add(new GraphBuilder.Edge(u, v, undirect));
+        this.edge.add(new LowLink.Edge(u, v));
         ++this.start[u];
-        if (undirect) {
-            ++this.start[v];
-        }
+        ++this.start[v];
     }
 
     public int[][][] build() {
@@ -47,11 +43,9 @@ public final class GraphBuilder {
         final int[] index = new int[this.n];
         final int m = this.edge.size();
         for (int i = 0; i < m; ++i) {
-            final GraphBuilder.Edge e = this.edge.get(i);
-            this.graph[e.from][index[e.from]++] = new int[]{e.to, i};
-            if (e.isUndirect) {
-                this.graph[e.to][index[e.to]++] = new int[]{e.from, i};
-            }
+            final LowLink.Edge e = this.edge.get(i);
+            this.graph[e.from][index[e.from]++] = new int[]{  e.to, i};
+            this.graph[  e.to][index[  e.to]++] = new int[]{e.from, i};
         }
         return this.graph;
     }
