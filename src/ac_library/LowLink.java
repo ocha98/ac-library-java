@@ -33,7 +33,7 @@ public final class LowLink {
         ++this.start[v];
     }
 
-    public int[][][] build() {
+    public void build() {
         this.hasBuilt = true;
         this.obtainedArticulationPoints = false;
         this.obtainedBridges = false;
@@ -47,7 +47,6 @@ public final class LowLink {
             this.graph[e.from][index[e.from]++] = new int[]{  e.to, i};
             this.graph[  e.to][index[  e.to]++] = new int[]{e.from, i};
         }
-        return this.graph;
     }
 
     public boolean[] articulationPoints() {
