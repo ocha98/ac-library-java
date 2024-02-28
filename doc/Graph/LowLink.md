@@ -2,7 +2,7 @@
 - - -
 
 与えられた無向辺を元に無向辺を構築し、関節点と橋を探索します。  
-どのメソッドも $0$ -indexed を仮定しています。
+どのメソッドも $0$-indexed を仮定しています。
 
 ## コンストラクタ
 ```java
@@ -45,8 +45,9 @@ public static boolean[] articulationPoints()
 **計算量**
 * 追加された辺の数を $m$ とすると $O(n+m)$
 
+### bridges
 ```java
-public static boolean[] bridges(int[][][] graphWithEdgeInfo)
+public static boolean[] bridges()
 ```
 長さ $n$ の `boolean` 配列を返します。  $i$ 番目の要素は $i$ 番目の辺が橋かどうかを示します。
 
