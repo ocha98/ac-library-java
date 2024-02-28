@@ -18,7 +18,7 @@ Generates an undirected graph with $n$ vertices and $0$ edges.
 ```java 
 public void addEdge(int u, int v)
 ```
-Add an undirected edge $u,v$ .
+Add an undirected edge $u,v$.
 
 **Constraints**
 * $0 \leq u, v < n$
@@ -33,7 +33,7 @@ public void build()
 Build the graph based on the undirected edges added.
 Must be called before calling the `articulationPoints` and `bridges` methods.
 
-**Computational complexity**.
+**Computational complexity**
 * Let $m$ be the number of added edges $O(n+m)$
 
 ### articulationPoints
@@ -42,7 +42,7 @@ public static boolean[] articulationPoints()
 ```
 Returns a `boolean` array of length $n$. The $i$-th element indicates whether the $i$-th vertex is an articulation point.
 
-**Computational complexity**.
+**Computational complexity**
 * Let $m$ be the number of added edges $O(n+m)$
 
 ### bridges
@@ -51,5 +51,5 @@ public static boolean[] bridges()
 ```
 Returns a `boolean` array of length $n$.  The $i$-th element indicates whether the $i$-th edge is a bridge.
 
-**Computation**.
+**Computational complexity**
 * Let $m$ be the number of edges added $O(n+m)$
