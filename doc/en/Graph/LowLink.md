@@ -38,7 +38,7 @@ Must be called before calling the `articulationPoints` and `bridges` methods.
 
 ### articulationPoints
 ```java
-public static boolean[] articulationPoints()
+public boolean[] articulationPoints()
 ```
 Returns a `boolean` array of length $n$. The $i$-th element indicates whether the $i$-th vertex is an articulation point.
 
@@ -47,7 +47,7 @@ Returns a `boolean` array of length $n$. The $i$-th element indicates whether th
 
 ### bridges
 ```java
-public static boolean[] bridges()
+public boolean[] bridges()
 ```
 Returns a `boolean` array of length $n$.  The $i$-th element indicates whether the $i$-th edge is a bridge.
 
