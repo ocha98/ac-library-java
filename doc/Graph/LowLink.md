@@ -38,7 +38,7 @@ public void build()
 
 ### articulationPoints
 ```java
-public static boolean[] articulationPoints()
+public boolean[] articulationPoints()
 ```
 長さ $n$ の `boolean` 配列を返します。 $i$ 番目の要素は $i$ 番目の頂点が関節点がどうかを示しています。
 
@@ -47,7 +47,7 @@ public static boolean[] articulationPoints()
 
 ### bridges
 ```java
-public static boolean[] bridges()
+public boolean[] bridges()
 ```
 長さ $n$ の `boolean` 配列を返します。  $i$ 番目の要素は $i$ 番目の辺が橋かどうかを示します。
 
