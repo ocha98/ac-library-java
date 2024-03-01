@@ -2,7 +2,7 @@
 
 Forked from [NASU41/AtCoderLibraryForJava](https://github.com/NASU41/AtCoderLibraryForJava)
 
-Web Document: [AC Library Java Document](https://ocha98.github.io/ac-library-java/)
+Web Document: [AC Library Java Document](https://ocha98.github.io/ac-library-java/jp)
 
 ## 使い方
 ### jar の入手
