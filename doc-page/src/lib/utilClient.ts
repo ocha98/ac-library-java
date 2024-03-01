@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { useRouter } from "next/router";
 
 export const convertLanguageCodeToName = (code: string): string => {
@@ -15,9 +14,8 @@ export const convertLanguageCodeToName = (code: string): string => {
 export const getLang = (): string => {
   const router = useRouter()
   const { lang } = router.query
-  if (!lang) {
-    notFound()
-  }
+  if (!lang) return 'jp'
+
   if (typeof lang !== 'string') {
     throw new Error('lang is not string. ' + typeof lang)
   }
