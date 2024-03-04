@@ -34,6 +34,7 @@ public class DSU {
     }
 
     public int leader(int a) {
+        if (!(0 <= a && a < n)) throw new IndexOutOfBoundsException("" + a);
         if (parentOrSize[a] < 0) {
             return a;
         } else {
