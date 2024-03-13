@@ -99,4 +99,45 @@ public class SieveTest {
             }
         }
     }
+
+    @Test
+    public void testPrimeN() {
+        final int n = 83;
+        Sieve sieve = new Sieve(n);
+        int[] primes = sieve.getPrimes();
+        Assert.assertEquals(23, primes.length);
+        int[] expected = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83};
+        Arrays.sort(primes);
+        Assert.assertArrayEquals(expected, primes);
+
+        for(int i = 2;i <= n; ++i){
+            ArrayList<Sieve.PE> pe = sieve.factorize(i);
+            ArrayList<Sieve.PE> pe2 = factorize(i);
+            Assert.assertEquals(pe.size(), pe2.size());
+            pe.sort((a, b) -> a.p - b.p);
+            pe2.sort((a, b) -> a.p - b.p);
+            for(int j = 0;j < pe.size(); ++j){
+                Assert.assertEquals(pe.get(j).p, pe2.get(j).p);
+                Assert.assertEquals(pe.get(j).e, pe2.get(j).e);
+            }
+        }
+
+        for(int i = 1;i <= n; ++i){
+            int[] divisrs = sieve.divisors(i);
+            ArrayList<Sieve.PE> pe = sieve.factorize(i);
+            int x = 1;
+            for(Sieve.PE p : pe){
+                x *= p.e+1;
+            }
+            int m = divisrs.length;
+            Assert.assertEquals(x, m);
+            Arrays.sort(divisrs);
+            for(int j = 0;j < m/2; ++j){
+                Assert.assertEquals(i, divisrs[j] * divisrs[m-1-j]);
+            }
+            if(m%2 == 1){
+                Assert.assertEquals(i, divisrs[m/2] * divisrs[m/2]);
+            }
+        }
+    }
 }

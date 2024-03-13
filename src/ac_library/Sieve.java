@@ -39,7 +39,7 @@ public final class Sieve {
         final int[] primes = new int[cnt];
         primes[0] = 2;
         int idx = 1;
-        for (int i = 3;i < n; i += 2) {
+        for (int i = 3;i <= n; i += 2) {
             if (this.min_factor[i] == i) primes[idx++] = i;
         }
 
@@ -48,7 +48,7 @@ public final class Sieve {
 
     public boolean isPrime(int x) {
         AssertUtil.check(0 <= x && x <= n);
-        if (x == 0 || x == 1) return false;
+        if (x < 2) return false;
         return min_factor[x] == x;
     }
 
@@ -81,12 +81,11 @@ public final class Sieve {
             final int s = len;
             final int p = pe.p;
             final int e = pe.e;
-            for (int i = 0;i < s; ++i) {
-                int pow = 1;
-                final int resi = res[i];
-                for (int j = 0;j < e; ++j) {
-                    pow *= p;
-                    res[len++] = resi*pow;
+            int pow = 1;
+            for (int i = 0;i < e; ++i) {
+                pow *= p;
+                for (int j = 0;j < s; ++j) {
+                    res[len++] = res[j]*pow;
                 }
             }
         }
@@ -94,5 +93,3 @@ public final class Sieve {
         return res;   
     }
 }
-
-
