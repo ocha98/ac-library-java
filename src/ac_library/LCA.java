@@ -4,6 +4,7 @@ public final class LCA {
     private final static int INF = 1<<29;
     private final int n;
     private final java.util.ArrayList<Edge> es;
+    private boolean hasBuilt = false;
     // EularTour
     private final int[] eular_tour;
     private final int[] first;
@@ -122,11 +123,13 @@ public final class LCA {
     }
 
     public void build() {
+        this.hasBuilt = true;
         eulerTour();
         sp = new SparseTable();
     }
 
     public int getLCA(int u, int v) {
+        AssertUtil.check(this.hasBuilt, "build has not been called yet");
         AssertUtil.check(0 <= u && u < n && 0 <= v && v < n);
         if(u == v)return u;
         int in_u = first[u];
@@ -140,6 +143,7 @@ public final class LCA {
     }
 
     public int dist(int u, int v) {
+        AssertUtil.check(this.hasBuilt, "build has not been called yet");
         AssertUtil.check(0 <= u && u < n && 0 <= v && v < n);
         final int lca = this.getLCA(u, v);
         return depth[v] + depth[u] - (depth[lca]<<1);
