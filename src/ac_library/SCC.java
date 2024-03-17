@@ -2,9 +2,9 @@ package ac_library;
 /**
  * @verified https://atcoder.jp/contests/practice2/tasks/practice2_g
  */
-public class SCC {
+public final class SCC {
 
-    static class Edge {
+    private static final class Edge {
         int from, to;
 
         public Edge(int from, int to) {
