@@ -1,12 +1,12 @@
 package ac_library;
 
-public class MaxFlow {
+public final class MaxFlow {
     private static final class InternalCapEdge {
         final int to;
         final int rev;
         long cap;
 
-        InternalCapEdge(int to, int rev, long cap) {
+        private InternalCapEdge(int to, int rev, long cap) {
             this.to = to;
             this.rev = rev;
             this.cap = cap;
@@ -37,7 +37,7 @@ public class MaxFlow {
     private static final class IntPair {
         final int first, second;
 
-        IntPair(int first, int second) {
+        private IntPair(int first, int second) {
             this.first = first;
             this.second = second;
         }
