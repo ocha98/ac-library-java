@@ -1,6 +1,6 @@
 package ac_library;
 
-public class Pair<S extends Comparable<S>, T extends Comparable<T>> implements Comparable<Pair<S, T>> {
+public final class Pair<S extends Comparable<S>, T extends Comparable<T>> implements Comparable<Pair<S, T>> {
     S first;
     T second;
 
