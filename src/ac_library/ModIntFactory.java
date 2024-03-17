@@ -521,7 +521,7 @@ public final class ModIntFactory {
             }
         }
 
-        private static final class ModArithmeticDynamic extends ModArithmetic {
+        private static class ModArithmeticDynamic extends ModArithmetic {
             final int mod;
 
             ModArithmeticDynamic(int mod) {
