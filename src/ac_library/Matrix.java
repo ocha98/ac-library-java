@@ -1,6 +1,6 @@
 package ac_library;
 
-public class Matrix {
+public final class Matrix {
     private final long[] data;
     private final int height, width;
 
