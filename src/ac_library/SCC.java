@@ -7,7 +7,7 @@ public final class SCC {
     private static final class Edge {
         int from, to;
 
-        public Edge(int from, int to) {
+        private Edge(int from, int to) {
             this.from = from;
             this.to = to;
         }
