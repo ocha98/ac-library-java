@@ -11,7 +11,7 @@ package ac_library;
  * <li> https://atcoder.jp/contests/abc042/tasks/arc058_b : (M = 1000000007, combination ver.)
  * </ul>
  */
-public class ModIntFactory {
+public final class ModIntFactory {
     private final ModArithmetic ma;
     private final int mod;
 
@@ -77,7 +77,7 @@ public class ModIntFactory {
         return mod;
     }
 
-    public class ModInt {
+    public final class ModInt {
         private int value;
 
         private ModInt(int value) {

@@ -1,6 +1,6 @@
 package ac_library;
 
-public class Multiset<T> extends java.util.TreeMap<T, Long> {
+public final class Multiset<T> extends java.util.TreeMap<T, Long> {
     public Multiset() {
         super();
     }

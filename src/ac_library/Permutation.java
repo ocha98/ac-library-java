@@ -3,7 +3,7 @@ package ac_library;
  * Verified
  * https://atcoder.jp/contests/abc054/submissions/16977824
  */
-public class Permutation implements java.util.Iterator<int[]>, Iterable<int[]> {
+public final class Permutation implements java.util.Iterator<int[]>, Iterable<int[]> {
     private int[] next;
 
     public Permutation(int n) {

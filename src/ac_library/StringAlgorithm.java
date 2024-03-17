@@ -1,6 +1,6 @@
 package ac_library;
 
-public class StringAlgorithm {
+public final class StringAlgorithm {
     private static int[] saNaive(int[] s) {
         int n = s.length;
         int[] sa = new int[n];

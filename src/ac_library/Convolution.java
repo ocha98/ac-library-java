@@ -5,7 +5,7 @@ package ac_library;
  * @verified https://atcoder.jp/contests/practice2/submissions/24449847
  * @verified https://judge.yosupo.jp/submission/53841
  */
-public class Convolution {
+public final class Convolution {
     /**
      * Find a primitive root.
      *
@@ -79,7 +79,7 @@ public class Convolution {
         return x;
     }
 
-    private static class FftInfo {
+    private static final class FftInfo {
         private static int bsfConstexpr(int n) {
             int x = 0;
             while ((n & (1 << x)) == 0) x++;

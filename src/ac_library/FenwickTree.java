@@ -1,6 +1,6 @@
 package ac_library;
 
-public class FenwickTree {
+public final class FenwickTree {
     private int _n;
     private long[] data;
 

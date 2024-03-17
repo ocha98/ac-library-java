@@ -4,13 +4,13 @@ package ac_library;
  * - https://atcoder.jp/contests/practice2/tasks/practice2_e
  * - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
  */
-public class MinCostFlow {
+public final class MinCostFlow {
     private static final class InternalWeightedCapEdge {
         final int to, rev;
         long cap;
         final long cost;
 
-        InternalWeightedCapEdge(int to, int rev, long cap, long cost) {
+        private InternalWeightedCapEdge(int to, int rev, long cap, long cost) {
             this.to = to;
             this.rev = rev;
             this.cap = cap;
@@ -43,7 +43,7 @@ public class MinCostFlow {
     private static final class IntPair {
         final int first, second;
 
-        IntPair(int first, int second) {
+        private IntPair(int first, int second) {
             this.first = first;
             this.second = second;
         }

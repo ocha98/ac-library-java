@@ -1,6 +1,6 @@
 package ac_library;
 
-public class MathLib {
+public final class MathLib {
     private static long safe_mod(long x, long m) {
         x %= m;
         if (x < 0) x += m;

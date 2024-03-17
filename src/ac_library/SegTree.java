@@ -2,7 +2,7 @@ package ac_library;
 /**
  * @verified https://atcoder.jp/contests/practice2/tasks/practice2_j
  */
-public class SegTree<S> {
+public final class SegTree<S> {
     final int MAX;
 
     final int N;

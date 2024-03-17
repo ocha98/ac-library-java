@@ -1,7 +1,7 @@
 package ac_library;
 
 public final class LCA {
-    private final static int INF = 1<<29;
+    private static final int INF = 1<<29;
     private final int n;
     private final java.util.ArrayList<Edge> es;
     private boolean hasBuilt = false;
@@ -12,7 +12,7 @@ public final class LCA {
 
     private SparseTable sp;
 
-    final public static class Edge {
+    public static final class Edge {
         final int from;
         final int to;
         Edge(int from, int to) {
@@ -21,7 +21,7 @@ public final class LCA {
         }
     }
     
-    final static private class CSR {
+    private static final class CSR {
         final int[] start;
         final int[] elist;
         // n: number of vertex
@@ -44,7 +44,7 @@ public final class LCA {
         }
     }
 
-    final private class SparseTable {
+    private final class SparseTable {
         private final int[][] table;
 
         // \lfloor  \log_{2}{x} \rfloor
@@ -52,7 +52,7 @@ public final class LCA {
             return 31 - Integer.numberOfLeadingZeros(x);
         }
 
-        SparseTable() {
+        private SparseTable() {
             final int m = n<<1; // n is parent class n (Number of vertex).
             table = new int[log2(m)+1][m];
 
@@ -70,7 +70,7 @@ public final class LCA {
             }
         }
 
-        public int query(int l, int r) {
+        private int query(int l, int r) {
             final int k = log2(r-l);
             final int v1 = table[k][l];
             final int v2 = table[k][r - (1<<k)];
