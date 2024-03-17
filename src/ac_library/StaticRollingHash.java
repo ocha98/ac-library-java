@@ -1,6 +1,6 @@
 package ac_library;
 
-public class StaticRollingHash implements Comparable<StaticRollingHash> {
+public final class StaticRollingHash implements Comparable<StaticRollingHash> {
     private static final long BASE = new java.util.Random().nextInt(1, 1001) + Character.MAX_VALUE;
     private static final long MASK30 = (1L << 30) - 1;
     private static final long MASK31 = (1L << 31) - 1;
