@@ -1,6 +1,6 @@
 package ac_library;
 
-public class DSU {
+public final class DSU {
     private int n;
     private int[] parentOrSize;
 
