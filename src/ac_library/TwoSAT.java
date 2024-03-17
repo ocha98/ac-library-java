@@ -2,7 +2,7 @@ package ac_library;
 /**
  * @verified https://atcoder.jp/contests/practice2/submissions/16647102
  */
-public class TwoSAT {
+public final class TwoSAT {
     private final int n;
     private final InternalSCC scc;
     private final boolean[] answer;
@@ -60,19 +60,19 @@ public class TwoSAT {
     }
 
     private static final class EdgeList {
-        long[] a;
-        int ptr = 0;
+        private long[] a;
+        private int ptr = 0;
 
-        EdgeList(int cap) {
+        private EdgeList(int cap) {
             a = new long[cap];
         }
 
-        void add(int upper, int lower) {
+        private void add(int upper, int lower) {
             if (ptr == a.length) grow();
             a[ptr++] = (long) upper << 32 | lower;
         }
 
-        void grow() {
+        private void grow() {
             long[] b = new long[a.length << 1];
             System.arraycopy(a, 0, b, 0, a.length);
             a = b;
@@ -80,26 +80,26 @@ public class TwoSAT {
     }
 
     private static final class InternalSCC {
-        final int n;
-        int m;
-        final EdgeList unorderedEdges;
-        final int[] start;
+        private final int n;
+        private int m;
+        private final EdgeList unorderedEdges;
+        private final int[] start;
 
-        InternalSCC(int n) {
+        private InternalSCC(int n) {
             this.n = n;
             this.unorderedEdges = new EdgeList(n);
             this.start = new int[n + 1];
         }
 
-        void addEdge(int from, int to) {
+        private void addEdge(int from, int to) {
             unorderedEdges.add(from, to);
             start[from + 1]++;
             this.m++;
         }
 
-        static final long mask = 0xffff_ffffl;
+        private static final long mask = 0xffff_ffffl;
 
-        int[] ids() {
+        private int[] ids() {
             for (int i = 1; i <= n; i++) {
                 start[i] += start[i - 1];
             }
