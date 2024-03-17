@@ -4,7 +4,7 @@ package ac_library;
  *
  * @verified https://atcoder.jp/contests/practice2/tasks/practice2_k
  */
-public class LazySegTree<S, F> {
+public final class LazySegTree<S, F> {
     final int MAX;
 
     final int N;
