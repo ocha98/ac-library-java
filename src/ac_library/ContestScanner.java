@@ -3,7 +3,7 @@ package ac_library;
 public final class ContestScanner {
     private final java.io.InputStream in;
     private final byte[] buffer;
-    private static final long MUL_LIMIT = -Long.MIN_VALUE / 10;
+    private static final long MUL_LIMIT = Long.MIN_VALUE / 10;
     private int ptr = 0;
     private int buflen = 0;
 
