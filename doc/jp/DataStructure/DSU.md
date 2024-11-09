@@ -88,7 +88,37 @@ ArrayList<ArrayList<Integer>> groups()
 * $O(n)$
 
 ## 使用例
-- Java11
-[[https://atcoder.jp/contests/practice2/submissions/16582269]]
-- Java8
-[[https://atcoder.jp/contests/practice2/submissions/16582277]]
+AtCoder Library Practice Contest: A - Disjoint Set Union [提出コード](https://atcoder.jp/contests/practice2/submissions/52255775)
+
+```java
+import ac_library.*;
+
+public class Main {
+    public static void main(String[] args) {
+        ContestScanner scan = new ContestScanner();
+        ContestPrinter pl = new ContestPrinter();
+        int n = scan.nextInt();
+        int q = scan.nextInt();
+
+        DSU dsu = new DSU(n);
+        while(q-- > 0) {
+            int t = scan.nextInt();
+            int u = scan.nextInt();
+            int v = scan.nextInt();
+
+            if(t == 0) {
+                dsu.merge(u, v);
+            } else {
+                if(dsu.same(u, v)) {
+                    pl.println('1');
+                } else {
+                    pl.println('0');
+                }
+            }
+        }
+
+        pl.close();
+    }
+}
+
+```
